@@ -1,5 +1,8 @@
 {% block facebookShare %}
     <a target="_blank"
-       href="https://www.facebook.com/sharer/sharer.php?u=http://jsapps.co/facebook/appDetails/{{ appDetails.AppID }}">
+       href="https://www.facebook.com/sharer/sharer.php?
+       u=http://jsapps.co/facebook/appDetails/{{ appDetails.AppID }}
+       image={{ imageUrl }}
+       title={{ appDetails.title }}">
         <img class="img-responsive" src="{{ url_for('static', filename='images/common/share-facebook.png') }}"></a>
 {% endblock %}
