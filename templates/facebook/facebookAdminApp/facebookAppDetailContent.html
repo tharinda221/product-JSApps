@@ -5,7 +5,7 @@
 
         {% else %}
             <div class="img-app">
-                <img src="../../../static/images/bg.jpg" class="img-responsive">
+                <img src="{{ url_for('static', filename='' + appDetails.AppResultImage) }}" class="img-responsive">
                 <a href="{{ url_for('/authorize/facebook', redirect=request.url) }}">
                     <img class="img-login img-responsive" src="{{ url_for('static', filename='images/common/facebook-login-button.png') }}"></a>
             </div>
