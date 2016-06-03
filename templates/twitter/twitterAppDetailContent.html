@@ -1,0 +1,14 @@
+{% block appDetailContent %}
+    {% if TwitterAuthorized %}
+        <a onclick="location.href='/twitter/runApplication/{{ appDetails.AppID }}'"><img
+                class="img-responsive" src="{{ url_for('static', filename='' + appDetails.AppSourceImage) }}"></a>
+    {% else %}
+        <div class="img-app">
+            <img src="../../../static/images/bg.jpg" class="img-responsive">
+            <div class="text-center">
+                <a href="{{ url_for('/authorize/twitter', redirect=request.url) }}">
+                <img class="img-login img-responsive" src="{{ url_for('static', filename='images/common/twitterLoginLarge.png') }}"></a>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

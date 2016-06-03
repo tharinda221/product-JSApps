@@ -1,0 +1,17 @@
+{% extends "common/base.html" %}
+{% block header %}
+    {% include "facebook/common/facebookHeader.html" %}
+{% endblock %}
+{% block Links %}
+    {% include "facebook/common/facebookLinks.html" %}
+{% endblock %}
+{% block pageContent %}
+    <div class="col-md-8">
+        {% block appDetailContent %}
+            {% include "facebook/userApp/appDetailsContent/appDetailsContent.html" %}
+        {% endblock %}
+        {% block comment %}
+            {% include "facebook/common/facebookComment.html" %}
+        {% endblock %}
+    </div>
+{% endblock %}

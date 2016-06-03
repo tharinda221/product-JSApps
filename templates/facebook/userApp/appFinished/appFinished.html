@@ -1,0 +1,34 @@
+{% extends "common/base.html" %}
+{% block head %}
+    <meta property="og:url" content="http://jsapps.co/facebook/appDetails/{{ appDetails.AppID }}"/>
+    <meta property="og:image" content="http://jsapps.co/image/{{ appDetails.AppID }}"/>
+    <meta property="og:title" content={{ appDetails.title }}/>
+    <meta property="og:description"
+          content={{ appDetails.description }}/>
+    <meta property="og:name" content="{{ name }}"/>
+    <meta property="og:redirect" content="http://jsapps.co/"/>
+{% endblock %}
+{% block title %}JsApps{% endblock %}
+
+{% block header %}
+    {% include "facebook/common/facebookHeader.html" %}
+{% endblock %}
+{% block Links %}
+    {% include "facebook/common/facebookLinks.html" %}
+{% endblock %}
+{% block pageContent %}
+
+    {% block appFinishedContent %}
+        {% include "facebook/userApp/appFinished/appFinishContent.html" %}
+    {% endblock %}
+    {% block facebookShare %}
+        {% include "facebook/common/facebookShare.html" %}
+    {% endblock %}
+    {% block comment %}
+        {% include "facebook/userApp/appFinished/share.html" %}
+    {% endblock %}
+
+{% endblock %}
+{% block footer %}
+    {% include 'common/footer.html' %}
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends "common/base.html" %}
+{% block title %}JsApps{% endblock %}
+{% block header %}
+    {% include "common/header.html" %}
+{% endblock %}
+{% block Links %}
+    {% include "about/links.html" %}
+{% endblock %}
+{% block pageContent %}
+    <h1>About</h1><br>
+    This website is created for give user specific predictions by using their social media data. We are only accessing
+    social APIs according to their permissions.<br>
+    Please contact us if you have any concern or anything to inform us.
+    <br>
+    <br>
+    <b>Email :</b> JSAppsMail@gmail.com <br>
+    <b>Facebook :</b> <a href="https://web.facebook.com/JSAppsco" target="_blank">Facebook Fan Page</a><br>
+    <b>Twitter :</b> <a href="https://twitter.com/JSAppsPage" target="_blank">Twitter Fan Page</a>
+
+{% endblock %}
+{% block footer %}
+    {% include 'common/footer.html' %}
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends "common/pagination.html" %}
+{% block numbersDisplay %}
+    <div style="text-align: center;">
+        <div id="example"></div>
+        <script type='text/javascript'>
+            var options = {
+                currentPage: {{ twitterPageNum }},
+                totalPages: {{ noOfAppsPagesTwitter }},
+                pageUrl: function (type, page, current){
+                    return '/tweeter/'+page;
+                },
+                alignment:'center',
+                useBootstrapTooltip:true
+            };
+
+            $('#example').bootstrapPaginator(options);
+        </script>
+    </div>
+{% endblock %}

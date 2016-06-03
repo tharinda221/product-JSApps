@@ -1,0 +1,7 @@
+{% block twitterShare %}
+    <div class="thumbnail">
+        <a onclick="location.href='/twitter/share/{{ appDetails.AppID }}'"><img
+                src="{{ url_for('static', filename='images/common/ShareOnFacebook.png') }}" alt="thumbnail"></a>
+
+    </div>
+{% endblock %}

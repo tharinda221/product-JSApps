@@ -1,0 +1,8 @@
+flask
+facepy
+pymongo
+python-dateutil
+numpy
+rauth
+flask_restful
+twython

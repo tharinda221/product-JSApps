@@ -1,0 +1,15 @@
+{% extends "common/header.html" %}
+{% block login %}
+{#    {% if not authorized %}#}
+{#        <div class="span9">#}
+{#        <div class="pull-right">#}
+{#                <a href="{{ url_for('/authorize/facebook', redirect=request.url) }}"><img#}
+{#                        src="{{ url_for('static', filename = 'images/common/facebook-login-button.png') }}"></a>#}
+{#        </div>#}
+{#    {% endif %}#}
+    {% if authorized %}
+        <div class="clo-md-9 pull-right">
+            <span style="font-size: 1.5em">Hi , {% print(name) %}</span> <img src="https://graph.facebook.com/{% print(id) %}/picture"></a>
+        </div>
+    {% endif %}
+{% endblock %}

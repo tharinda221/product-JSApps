@@ -1,0 +1,17 @@
+{% extends "common/base.html" %}
+{% block header %}
+    {% include "twitter/twitterHeader.html" %}
+{% endblock %}
+{% block Links %}
+    {% include "twitter/twitterLinks.html" %}
+{% endblock %}
+{% block pageContent %}
+    <div class="col-md-8">
+        {% block appDetailContent %}
+            {% include "twitter/twitterAppDetailContent.html" %}
+        {% endblock %}
+        {% block comment %}
+            {% include "twitter/twitterComment.html" %}
+        {% endblock %}
+    </div>
+{% endblock %}

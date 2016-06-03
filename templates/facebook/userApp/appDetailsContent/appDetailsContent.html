@@ -1,0 +1,13 @@
+{% block appDetailContent %}
+        {% if authorized %}
+            <a onclick="location.href='/facebook/runApplication/userApp/{{ appDetails.AppID }}'">
+                <img class="img-responsive" src="{{ url_for('static', filename='' + appDetails.AppSourceImage) }}"></a>
+
+        {% else %}
+            <div class="img-app">
+                <img src="../../../static/images/bg.jpg" class="img-responsive">
+                <a href="{{ url_for('/authorize/facebook', redirect=request.url) }}">
+                    <img class="img-login img-responsive" src="{{ url_for('static', filename='images/common/facebook-login-button.png') }}"></a>
+            </div>
+        {% endif %}
+{% endblock %}

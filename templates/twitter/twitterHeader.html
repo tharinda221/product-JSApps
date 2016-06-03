@@ -1,0 +1,19 @@
+{% extends "common/header.html" %}
+{% block login %}
+{#    {% if not TwitterAuthorized %}#}
+{#        <div class="span9">#}
+{#            <p class="pull-right">#}
+{#                <a href="{{ url_for('/authorize/twitter', redirect=request.url) }}"><img#}
+{#                        src="{{ url_for('static', filename = 'images/common/loginTwitter.png') }}"></a>#}
+{#            </p>#}
+{#        </div>#}
+{#    {% endif %}#}
+    {% if TwitterAuthorized %}
+        <div class="span9">
+            <p class="pull-right">
+                Hi , {{ name }}
+                <img src="{{ profilePicture }}"></a>
+            </p>
+        </div>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "common/base.html" %}
+{% block title %}JsApps{% endblock %}
+
+{% block header %}
+    {% include "facebook/common/facebookHeader.html" %}
+{% endblock %}
+{% block Links %}
+    {% include "facebook/common/facebookLinks.html" %}
+{% endblock %}
+{% block pageContent %}
+
+    {% block appFinishedContent %}
+        {% include "facebook/facebookAdminApp/facebookAppFinishedContent.html" %}
+    {% endblock %}
+    {% block facebookShare %}
+        {% include "facebook/common/facebookShare.html" %}
+    {% endblock %}
+    {% block comment %}
+        {% include "facebook/common/facebookComment.html" %}
+    {% endblock %}
+
+{% endblock %}
+{% block footer %}
+    {% include 'common/footer.html' %}
+{% endblock %}

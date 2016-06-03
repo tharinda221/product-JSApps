@@ -1,0 +1,23 @@
+{% extends "common/base.html" %}
+{% block title %}JsApps{% endblock %}
+
+{% block content %}
+    <div class="container">
+    <h>Create this app</h>
+        {% block header %}
+            {% include "facebook/common/facebookHeader.html" %}
+        {% endblock %}
+        {% block Links %}
+            {% include "facebook/common/facebookLinks.html" %}
+        {% endblock %}
+
+        {% block appFinishedContent %}
+            {% include "facebook/userApp/createApp/createAppContent.html" %}
+        {% endblock %}
+
+    </div>
+        {% block footer %}
+            {% include 'common/footer.html' %}
+        {% endblock %}
+    </div>
+{% endblock %}
