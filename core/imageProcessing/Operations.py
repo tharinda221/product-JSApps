@@ -1,4 +1,5 @@
 # import libraries
+import logging
 from PIL import Image, ImageSequence
 from PIL import ImageFont
 from PIL import ImageDraw
@@ -89,6 +90,7 @@ def findSoulMate(gender, skill):
 
 def writeTextInImage(text,img,fontSize, x, y):
     draw = ImageDraw.Draw(img)
-    font = ImageFont.truetype("/home/ubuntu/product-JSApps/static/fonts/"+"sans-serif.ttf", fontSize)
+    logging.error(config.fontPath + "sans-serif.ttf")
+    font = ImageFont.truetype(config.fontPath + "sans-serif.ttf", fontSize)
     draw.text((x, y), text, (0, 0, 0), font=font)
     return img
