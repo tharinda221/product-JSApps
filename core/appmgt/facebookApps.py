@@ -83,7 +83,7 @@ class facebookAppsMethods(object):
         writeTextInImage(session["facebookUser"]["userName"], background, 20, 37, 290)
         writeTextInImage(celeb, background, 20, 436, 290)
         fileName = str(random_with_N_digits(24))
-        background.save(config.pathToAppsImage + "app1" + "/" + fileName + ".jpg")
         logging.error("file path")
         logging.error(config.pathToAppsImage + "app1" + "/" + fileName + ".jpg")
+        background.save(config.pathToAppsImage + "app1" + "/" + fileName + ".jpg")
         return config.pathToAppsImage + "app1" + "/" + fileName + ".jpg"
