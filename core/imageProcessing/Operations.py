@@ -89,6 +89,6 @@ def findSoulMate(gender, skill):
 
 def writeTextInImage(text,img,fontSize, x, y):
     draw = ImageDraw.Draw(img)
-    font = ImageFont.truetype("sans-serif.ttf", fontSize)
+    font = ImageFont.truetype("/home/ubuntu/product-JSApps/static/fonts/"+"sans-serif.ttf", fontSize)
     draw.text((x, y), text, (0, 0, 0), font=font)
     return img
