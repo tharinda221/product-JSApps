@@ -47,7 +47,7 @@ def getTwitterUserDetails():
                                   resp['profile_image_url']
                                   )
     if getTwitterUserAvailability(session["screen_name"]):
-        putTwitterUserData(userId=twitterObj.userId,
+        user = twitterUser(userId=twitterObj.userId,
                            userScreenName=twitterObj.userScreenName,
                            userName=twitterObj.userName,
                            geoLocation=twitterObj.geoLocation,
@@ -55,6 +55,7 @@ def getTwitterUserDetails():
                            userDescription=twitterObj.userDescription,
                            profileImage=twitterObj.profileImage
                            )
+        putTwitterUserData(user)
 
 
 def getTweetsToString(userToken, userSecret):
