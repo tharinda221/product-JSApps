@@ -46,6 +46,7 @@ class runFacebookUserApplication(Resource):
             method = getattr(runApplicaions, method_name)
             if not method:
                 raise Exception("Method %s not implemented" % method_name)
+            logging.error("method going to run")
             session["fileName"] = method(appId)
             userId = session["facebookUser"]["userId"]
             userName = session["facebookUser"]["userName"]
