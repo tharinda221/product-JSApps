@@ -1,3 +1,5 @@
+import logging
+
 from __init__ import *
 # import libraries
 from tempfile import NamedTemporaryFile
@@ -12,6 +14,7 @@ class main(Resource):
 
 class tempImage(Resource):
     def get(self, appId):
+        logging.error("user Request image")
         tempFileObj = NamedTemporaryFile(mode='w+b', suffix='jpg')
         # pilImage = open('/home/tharinda/Working/projects/JSApps/static/images/appImages/facebook/app1/appImage.jpg',
         #                 'rb')
