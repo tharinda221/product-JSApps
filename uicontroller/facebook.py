@@ -45,7 +45,7 @@ class facebookAuthorized(Resource):
 
 class facebook(Resource):
     def get(self):
-        logging.info("user Entered")
+        logging.error("user Entered")
         global noOfAppsPagesFacebook, facebookUserObj, facebookAppCount, FacebookAppList
         facebookUserObj = getFacebookUser()
         startId, endId = getStartIdAndEndId(1, facebookAppCount)
