@@ -51,12 +51,13 @@ class runFacebookUserApplication(Resource):
             userId = session["facebookUser"]["userId"]
             userName = session["facebookUser"]["userName"]
             facebookCommentUrl = common.baseUrl + '/facebook/' + appId
+            imageUrl = common.baseUrl + '/image/' + appId
             headers = {'Content-Type': 'text/html'}
 
             return make_response(
                     render_template('facebook/userApp/appFinished/appFinished.html', authorized=userAuthorized,
                                     id=userId,
                                     name=userName, appDetails=obj,
-                                    facebookCommentUrl=facebookCommentUrl), 200, headers)
+                                    facebookCommentUrl=facebookCommentUrl, imageUrl=imageUrl), 200, headers)
         else:
             return redirect('/facebook/appDetails/userApp/' + appId)
