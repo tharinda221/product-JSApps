@@ -132,6 +132,7 @@ class shareFacebookResults(Resource):
 
 class getFacebookUserCreatableApps(Resource):
     def get(self, appId, pageNum):
+        logging.error("user entered")
         global noOfUserCreatableAppsFacebook
         IdList = getFacebookUserCreatableAppsIDList(appId)
         startId, endId = getStartIdAndEndId(pageNum, facebookUserCreatableAppCount)
