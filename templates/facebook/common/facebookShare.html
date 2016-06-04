@@ -32,7 +32,14 @@
             });
         });
     </script>
-    <a><img class="img-responsive" id="share_button" src="{{ url_for('static', filename='images/common/share-facebook.png') }}"></a>
+    <a href="https://www.facebook.com/dialog/feed?
+  app_id=1686276391610614&
+  link=http://jsapps.com/facebook/appDetails/adminApp/{{ appDetails.AppID }}&
+  picture={{ imageUrl }}&
+  name={{ appDetails.AppMessage }}&
+  caption=JSApps.co&
+  description={{ appDetails.AppDescription }}">
+        <img class="img-responsive" src="{{ url_for('static', filename='images/common/share-facebook.png') }}"></a>
 
 
 {% endblock %}
