@@ -23,5 +23,6 @@ class tempImage(Resource):
         pilImage.close()
         remove(session["fileName"])
         tempFileObj.seek(0, 0)
-        response = send_file(tempFileObj, as_attachment=True, attachment_filename='image.jpg')
+        # response = send_file(tempFileObj, as_attachment=True, attachment_filename='image.jpg')
+        response = send_file(tempFileObj, mimetype='image/jpeg')
         return response
