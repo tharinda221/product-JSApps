@@ -26,7 +26,6 @@ class runFacebookApplication(Resource):
             facebookCommentUrl = common.baseUrl + '/facebook/' + appId
             # imageUrl = common.baseUrl + '/image/' + appId
             imageUrl = session["fileName"]
-            print imageUrl
             obj = getFacebookAppDetailsById(appId)
             headers = {'Content-Type': 'text/html'}
 
@@ -54,7 +53,8 @@ class runFacebookUserApplication(Resource):
             userId = session["facebookUser"]["userId"]
             userName = session["facebookUser"]["userName"]
             facebookCommentUrl = common.baseUrl + '/facebook/' + appId
-            imageUrl = common.baseUrl + '/image/' + appId
+            # imageUrl = common.baseUrl + '/image/' + appId
+            imageUrl = session["fileName"]
             headers = {'Content-Type': 'text/html'}
 
             return make_response(
