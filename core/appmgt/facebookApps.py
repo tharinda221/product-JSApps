@@ -93,4 +93,4 @@ class facebookAppsMethods(object):
             os.makedirs(dirPath)
             background.save(filePath)
         # return config.pathToAppsImage + "app1" + "/" + fileName + ".jpg"
-        return common.baseUrl + "/static/images/appImages/facebook/app1/" + "/result" + "/" + fileName + ".jpg"
+        return common.baseUrl + "/static/images/appImages/facebook/app1/" + "result" + "/" + fileName + ".jpg"
