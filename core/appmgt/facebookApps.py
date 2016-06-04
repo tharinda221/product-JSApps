@@ -86,4 +86,5 @@ class facebookAppsMethods(object):
         logging.error("file path")
         logging.error(config.pathToAppsImage + "app1" + "/" + fileName + ".jpg")
         background.save(config.pathToAppsImage + "app1" + "/" + fileName + ".jpg")
-        return config.pathToAppsImage + "app1" + "/" + fileName + ".jpg"
+        # return config.pathToAppsImage + "app1" + "/" + fileName + ".jpg"
+        return common.baseUrl + "/static/images/appImages/facebook/app1/" + fileName + ".jpg"
