@@ -33,7 +33,7 @@ class runFacebookApplication(Resource):
                     render_template('facebook/facebookAdminApp/facebookAppFinished.html', authorized=userAuthorized,
                                     id=userId,
                                     name=userName, appDetails=obj,
-                                    facebookCommentUrl=facebookCommentUrl, imageUrl=imageUrl), 200, headers)
+                                    facebookCommentUrl=facebookCommentUrl, imageUrl=imageUrl, appID=facebookConstants.appID, baseUrl=common.baseUrl), 200, headers)
         else:
             return redirect('/facebook/appDetails/adminApp/' + appId)
 
@@ -61,6 +61,6 @@ class runFacebookUserApplication(Resource):
                     render_template('facebook/userApp/appFinished/appFinished.html', authorized=userAuthorized,
                                     id=userId,
                                     name=userName, appDetails=obj,
-                                    facebookCommentUrl=facebookCommentUrl, imageUrl=imageUrl), 200, headers)
+                                    facebookCommentUrl=facebookCommentUrl, imageUrl=imageUrl, appID=facebookConstants.appID), 200, headers)
         else:
             return redirect('/facebook/appDetails/userApp/' + appId)
