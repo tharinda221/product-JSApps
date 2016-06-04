@@ -22,10 +22,10 @@
                 FB.ui(
                         {
                             method: 'feed',
-                            name: '{{ name }}',
+                            name: '{{ appDetails.AppMessage }}',
                             link: '{{ baseUrl }}' + '/facebook/appDetails/adminApp/{{ appDetails.AppID }}',
                             picture: '{{ imageUrl }}',
-                            caption: 'Top 3 reasons why you should care about your finance',
+                            caption: 'JSApps.co',
                             description: '{{ appDetails.AppDescription }}',
                             message: ""
                         });
