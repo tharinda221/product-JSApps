@@ -8,9 +8,10 @@ from core.imageProcessing.Operations import *
 from core.usermgt.user import *
 import config
 
+
 def random_with_N_digits(n):
-    range_start = 10**(n-1)
-    range_end = (10**n)-1
+    range_start = 10 ** (n - 1)
+    range_end = (10 ** n) - 1
     return randint(range_start, range_end)
 
 
@@ -29,7 +30,6 @@ class facebookAppsMethods(object):
         BASE_DIR = config.BASE_DIR
         DataPath = open(os.path.join(BASE_DIR, "JSApps/resources/", "appData.json"), "r")
         data = json.load(DataPath)["App1"]["data"][0]["prediction"]
-        print("HERE")
         writeTextToImage(data)
 
     def TestMethod(self, appId):
@@ -40,7 +40,6 @@ class facebookAppsMethods(object):
         print config.AppsImagePath + "facebook/app1/" + fileName + ".jpg"
         background.save(config.AppsImagePath + "facebook/app1/" + fileName + ".jpg")
         return config.AppsImagePath + "facebook/app1/" + fileName + ".jpg"
-
 
     def profileImagesOnAGif(self, appId):
         profilePicsAlbumId = getAlbumIdByName(session["facebook_user_token"], session["facebookUser"]["userId"],
@@ -59,7 +58,6 @@ class facebookAppsMethods(object):
         createGIF(images=images, filename=directory + "/" + fileName + ".gif")
         return directory + "/" + fileName + ".gif"
 
-
     def ProfilePicCreator(self, appId):
         document = databaseCollections.facebookUserCreatableAppsCollectionName.find_one({'_id': ObjectId(appId)})
         url = getUserProfilePic(session["facebook_user_token"])
@@ -73,7 +71,7 @@ class facebookAppsMethods(object):
     def CelebrityDatingMatch(self, appId):
         document = databaseCollections.facebookAppsCollectionName.find_one({'_id': ObjectId(appId)})
         url = getUserProfilePic(session["facebook_user_token"])
-        skill = randint(0,6)
+        skill = randint(0, 6)
         celeb, celebUrl = findSoulMate(session["facebookUser"]["gender"], skill)
         userImage = readImageFromURL(url)
         celebImage = readImageFromURL(celebUrl)
@@ -82,9 +80,17 @@ class facebookAppsMethods(object):
         background.paste(celebImage, (436, 127))
         writeTextInImage(session["facebookUser"]["userName"], background, 20, 37, 290)
         writeTextInImage(celeb, background, 20, 436, 290)
-        fileName = str(random_with_N_digits(24))
-        logging.error("file path")
-        logging.error(config.pathToAppsImage + "app1" + "/" + fileName + ".jpg")
-        background.save(config.pathToAppsImage + "app1" + "/" + fileName + ".jpg")
+        fileName = str(session["facebookUser"]["userId"])
+        dirPath= config.pathToAppsImage + "app1" + "/result"
+        filePath= config.pathToAppsImage + "app1" + "/result" + "/" + fileName + ".jpg"
+        if os.path.isdir(dirPath):
+            if os.path.exists(filePath):
+                os.remove(filePath)
+                background.save(filePath)
+            else:
+                background.save(filePath)
+        else:
+            os.makedirs(dirPath)
+            background.save(filePath)
         # return config.pathToAppsImage + "app1" + "/" + fileName + ".jpg"
-        return common.baseUrl + "/static/images/appImages/facebook/app1/" + fileName + ".jpg"
+        return common.baseUrl + "/static/images/appImages/facebook/app1/" + "/result" + "/" + fileName + ".jpg"
