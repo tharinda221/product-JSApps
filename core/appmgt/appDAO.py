@@ -20,7 +20,8 @@ def putFacebookAppsData():
                 "AppUsedCount": 0,
                 "AppCreatedTime": datetime.datetime.utcnow(),
                 "AppDescription": "Use this for your memorable occasion",
-                "AppType": "userCreatable"
+                "AppType": "userCreatable",
+                "AppLabel": "match"
             }
     )
     logging.info("Inserted FacebookApp data")
@@ -93,7 +94,8 @@ def getFacebookAppDetailsById(Id):
                        appsourceimage=document["AppSourceImage"],
                        appusedcount=document["AppUsedCount"],
                        appdescription=document["AppDescription"],
-                       apptype=document["AppType"])
+                       apptype=document["AppType"],
+                       applabel=document["AppLabel"])
 
     return obj
 
@@ -165,3 +167,21 @@ def increaseAppCount(Id , count):
         return True
     except IOError:
         return False
+
+def getAppIDsByLabel(label):
+    list = []
+    cursor = databaseCollections.facebookAppsCollectionName.find({"AppLabel": label})
+    entries = cursor[:]
+    for item in entries:
+        obj = facebookApps(appid=item["_id"],
+                           appname=item["AppName"],
+                           appmethodname=item["AppMethodName"],
+                           appimage=item["AppImage"],
+                           appresultimage=item["AppResultImage"],
+                           appsourceimage=item["AppSourceImage"],
+                           appusedcount=item["AppUsedCount"],
+                           appdescription=item["AppDescription"],
+                           apptype=item["AppType"],
+                           applabel=item["AppLabel"])
+        list.append(obj)
+    return list

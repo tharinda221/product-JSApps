@@ -4,6 +4,7 @@ from core.socialmediamgt.facebook import *
 from core.appmgt.facebookApps import *
 from core.appmgt.appDAO import *
 from core.usermgt.userDAO import *
+from core.common.Constants import *
 # import libraries
 from __init__ import *
 
@@ -15,18 +16,23 @@ class runFacebookApplication(Resource):
         userAuthorized = True if "facebook_user_token" in session else False
         if userAuthorized:
             obj = getFacebookAppDetailsById(appId)
+            # increase App count
+            increaseAppCount(appId, (obj.AppUsedCount+1))
             # run method
-            method_name = obj.AppMethodName
-            method = getattr(runApplicaions, method_name)
-            if not method:
-                raise Exception("Method %s not implemented" % method_name)
-            session["fileName"] = method(appId)
+            # method_name = obj.AppMethodName
+            # method = getattr(runApplicaions, method_name)
+            # if not method:
+            #     raise Exception("Method %s not implemented" % method_name)
+            # session["fileName"] = method(appId)
             userId = session["facebookUser"]["userId"]
             userName = session["facebookUser"]["userName"]
             facebookCommentUrl = common.baseUrl + '/facebook/' + appId
             # imageUrl = common.baseUrl + '/image/' + appId
-            imageUrl = session["fileName"]
-            obj = getFacebookAppDetailsById(appId)
+            imageUrl = "http://www.owlhatworld.com/wp-content/uploads/2015/12/38.gif"
+            # get related Apps
+            relatedList = getAppIDsByLabel(obj.AppLabel)
+            relatedList.sort(key=lambda obj: obj.AppUsedCount, reverse=True)
+            relatedList = relatedList[:8]
             headers = {'Content-Type': 'text/html'}
 
             return make_response(
@@ -43,12 +49,13 @@ class runFacebookUserApplication(Resource):
         userAuthorized = True if "facebook_user_token" in session else False
         if userAuthorized:
             obj = getFacebookUserCreatableAppDetailsById(appId)
+            # increase App count
+            increaseAppCount(appId, (obj.AppUsedCount + 1))
             #run method
             method_name = obj.AppMethodName
             method = getattr(runApplicaions, method_name)
             if not method:
                 raise Exception("Method %s not implemented" % method_name)
-            logging.error("method going to run")
             session["fileName"] = method(appId)
             userId = session["facebookUser"]["userId"]
             userName = session["facebookUser"]["userName"]

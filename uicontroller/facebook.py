@@ -34,14 +34,17 @@ class facebookLogin(Resource):
 class facebookAuthorized(Resource):
     def get(self):
         # make a request for the access token credentials using code
-        redirect_uri = REDIRECT_URI
-        data = dict(code=request.args['code'], redirect_uri=redirect_uri)
-        facebookSession = facebookAgent.get_auth_session(data=data)
-        session["facebook_user_token"] = facebookSession.access_token
-        getFacebookUserInfo(session["facebook_user_token"])
-        session["facebookUser"] = json.loads(getFacebookUserJson())
-        return redirect(facebookConstants.returnURL)
-
+        user_accept = request.args.get("error", "")
+        if user_accept == "":
+            redirect_uri = REDIRECT_URI
+            data = dict(code=request.args['code'], redirect_uri=redirect_uri)
+            facebookSession = facebookAgent.get_auth_session(data=data)
+            session["facebook_user_token"] = facebookSession.access_token
+            getFacebookUserInfo(session["facebook_user_token"])
+            session["facebookUser"] = json.loads(getFacebookUserJson())
+            return redirect(facebookConstants.returnURL)
+        else:
+            return redirect('/authorize/facebook?redirect='+facebookConstants.returnURL)
 
 class facebook(Resource):
     def get(self):
