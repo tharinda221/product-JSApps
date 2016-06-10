@@ -51,7 +51,8 @@ class facebook(Resource):
         global noOfAppsPagesFacebook, facebookUserObj, facebookAppCount, FacebookAppList
         facebookUserObj = getFacebookUser()
         startId, endId = getStartIdAndEndId(1, facebookAppCount)
-        list = getAppList(startId, endId, FacebookAppList, "facebook")
+        appList = getAppList(startId, endId, FacebookAppList, "facebook")
+        appList = list(reversed(appList))
         headers = {'Content-Type': 'text/html'}
         userAuthorized = True if "facebook_user_token" in session else False
         userId = ""
@@ -62,7 +63,7 @@ class facebook(Resource):
         return make_response(
             render_template('facebook/facebookAdminApp/facebookPage.html', authorized=userAuthorized, id=userId,
                             name=userName, noOfAppsPagesFacebook=noOfAppsPagesFacebook,
-                            facebookPageNum=1, pageAppList=list),
+                            facebookPageNum=1, pageAppList=appList),
             200, headers)
 
 
@@ -71,7 +72,8 @@ class getFacebookPage(Resource):
         global noOfAppsPagesFacebook, facebookUserObj, facebookAppCount, FacebookAppList
         facebookUserObj = getFacebookUser()
         startId, endId = getStartIdAndEndId(pageNum, facebookAppCount)
-        list = getAppList(startId, endId, FacebookAppList, "facebook")
+        appList = getAppList(startId, endId, FacebookAppList, "facebook")
+        appList = list(reversed(appList))
         headers = {'Content-Type': 'text/html'}
         userAuthorized = True if "facebook_user_token" in session else False
         userId = ""
@@ -82,7 +84,7 @@ class getFacebookPage(Resource):
         return make_response(
             render_template('facebook/facebookAdminApp/facebookPage.html', authorized=userAuthorized, id=userId,
                             name=userName, noOfAppsPagesFacebook=noOfAppsPagesFacebook,
-                            facebookPageNum=pageNum, pageAppList=list),
+                            facebookPageNum=pageNum, pageAppList=appList),
             200, headers)
 
 
