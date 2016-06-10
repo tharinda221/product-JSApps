@@ -28,11 +28,14 @@
 
 <body>
 {% block content %}
+
+    <div class="row">
+        {% block header %}
+        {% endblock %}
+    </div>
+
     <div class="container">
-       <div class="row">
-            {% block header %}
-            {% endblock %}
-       </div>
+
 
         <div class="row">
             {% block Links %}
