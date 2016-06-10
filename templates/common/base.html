@@ -26,18 +26,17 @@
 </head>
 
 
-<body>
+<body style="padding: 0px">
 {% block content %}
 
-    <div class="row">
+    <div  style="height: 70px;background-color: #3b5998; color: #f7f7f7">
         {% block header %}
         {% endblock %}
     </div>
 
     <div class="container">
 
-
-        <div class="row">
+        <div class="row" style="margin-top: 20px">
             {% block Links %}
             {% endblock %}
         </div>
@@ -59,11 +58,12 @@
             {% endblock %}
         </div>
 
-        <hr>
 
-        {% block footer %}
-        {% endblock %}
+
+
     </div>
+     {% block footer %}
+        {% endblock %}
 {% endblock %}
 
 </body>

@@ -9,6 +9,7 @@ from uicontroller.twitter import *
 from uicontroller.about import *
 from uicontroller.privacy import *
 from uicontroller.createApp import *
+from uicontroller.ApplicationAPI import *
 # import libraries
 import flask
 from flask_restful import Api
@@ -44,3 +45,4 @@ api.add_resource(privacy, '/privacy', endpoint='/privacy')
 
 api.add_resource(createApp, '/facebook/createApp', endpoint='/facebook/createApp')
 api.add_resource(tempImage, '/image/<appId>')
+api.add_resource(FacebookApplicationAPI, '/facebook/getResultImage/<appId>')

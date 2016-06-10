@@ -1,5 +1,6 @@
 ﻿body {
-background:url(../images/common/background_wallpaper.png);
+/*background:url(../images/common/background_wallpaper.png);*/
+    background-color: #dfe3ee;
 padding-bottom:40px;
 padding-top:40px;
 }
@@ -38,6 +39,17 @@ a:link, a:visited, a:hover {
         color: #000 !important;
       background-color: transparent !important;
 }
+
+.nav-pills > .active > a,
+.nav-pills > .active > a,.nav-pills > li > a {
+    text-decoration: none;
+    border-bottom-width: 4px;
+    border-bottom-style: solid;
+    border-bottom-color:transparent ;
+        color: #000 !important;
+      background-color: transparent !important;
+}
+
 .nav-pills > li > a{
     border-radius:0px;
 }
@@ -101,4 +113,19 @@ background:#fff;
 .fb-comments iframe[style],
 .fb-comments > span {
 	width: 100% !important;
+}
+
+.appContent{
+    background-color: #f7f7f7;padding: 15px;
+    border-radius: 5px;
+    border: 1px solid #8b9dc3;
+}
+
+.appFooter{
+    text-align: center;
+    color: #ffffff;
+    background-color: #222222;
+    padding: 10px;
+    font-size: 0.9em;
+    margin-top: 30px
 }
