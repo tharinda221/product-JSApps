@@ -1,8 +1,11 @@
 # import libraries
 import logging
+import urllib
 from PIL import Image, ImageSequence
 from PIL import ImageFont
 from PIL import ImageDraw
+
+import cv2
 import requests
 import numpy as np
 from StringIO import StringIO
@@ -26,14 +29,19 @@ def writeTextToImage(text):
     img.save(outputFilePath)
 
 
-def readImageFromURL(url):
+def readImageFromURL(url, x, y):
     response = requests.get(url, verify=False)
     # img = np.array(Image.open(StringIO(response.content)))
     file = StringIO(response.content)
     img = Image.open(file)
-    image = img.resize((150, 150), Image.ANTIALIAS)
+    image = img.resize((x, y), Image.ANTIALIAS)
     return image
 
+def readImageFromURLInCV2(url,x, y):
+    req = urllib.urlopen(url)
+    arr = np.asarray(bytearray(req.read()), dtype=np.uint8)
+    img = cv2.imdecode(arr, -1)
+    return cv2.resize(img, (x, y))
 
 def createGIF(images, filename):
     writeGif(filename, images, duration=0.5)

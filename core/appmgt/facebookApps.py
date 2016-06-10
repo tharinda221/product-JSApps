@@ -6,8 +6,9 @@ from random import randint
 from core.socialmediamgt.facebook import *
 from core.imageProcessing.Operations import *
 from core.usermgt.user import *
+from core.common.Constants import *
 import config
-
+from core.imageProcessing.libs.cartoonify import *
 
 def random_with_N_digits(n):
     range_start = 10 ** (n - 1)
@@ -73,8 +74,8 @@ class facebookAppsMethods(object):
         url = getUserProfilePic(session["facebook_user_token"])
         skill = randint(0, 6)
         celeb, celebUrl = findSoulMate(session["facebookUser"]["gender"], skill)
-        userImage = readImageFromURL(url)
-        celebImage = readImageFromURL(celebUrl)
+        userImage = readImageFromURL(url, 150, 150)
+        celebImage = readImageFromURL(celebUrl, 150, 150)
         background = Image.open(config.pathToStatic + document["AppSourceImage"])
         background.paste(userImage, (37, 127))
         background.paste(celebImage, (436, 127))
@@ -94,3 +95,23 @@ class facebookAppsMethods(object):
             background.save(filePath)
         # return config.pathToAppsImage + "app1" + "/" + fileName + ".jpg"
         return common.baseUrl + "/static/images/appImages/facebook/app1/" + "result" + "/" + fileName + ".jpg"
+
+    def cartooning(self, appId):
+        document = databaseCollections.facebookAppsCollectionName.find_one({'_id': ObjectId(appId)})
+        url = getUserProfilePic(session["facebook_user_token"])
+        userImage = readImageFromURLInCV2(url, 500, 500)
+        output = cartoonize(userImage)
+        # save file
+        fileName = str(session["facebookUser"]["userId"])
+        dirPath = config.pathToAppsImage + "app2" + "/result"
+        filePath = config.pathToAppsImage + "app2" + "/result" + "/" + fileName + ".jpg"
+        if os.path.isdir(dirPath):
+            if os.path.exists(filePath):
+                os.remove(filePath)
+                cv2.imwrite(filePath, output)
+            else:
+                cv2.imwrite(filePath, output)
+        else:
+            os.makedirs(dirPath)
+            cv2.imwrite(filePath, output)
+        return common.baseUrl + "/static/images/appImages/facebook/app2/" + "result" + "/" + fileName + ".jpg"
