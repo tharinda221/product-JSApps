@@ -99,8 +99,9 @@ class facebookAppsMethods(object):
     def cartooning(self, appId):
         document = databaseCollections.facebookAppsCollectionName.find_one({'_id': ObjectId(appId)})
         url = getUserProfilePic(session["facebook_user_token"])
-        userImage = readImageFromURLInCV2(url, 500, 500)
+        userImage = readImageFromURL(url, 500, 500)
         output = cartoonize(userImage)
+        output = Image.fromarray(output)
         # save file
         fileName = str(session["facebookUser"]["userId"])
         dirPath = config.pathToAppsImage + "app2" + "/result"
@@ -108,10 +109,10 @@ class facebookAppsMethods(object):
         if os.path.isdir(dirPath):
             if os.path.exists(filePath):
                 os.remove(filePath)
-                cv2.imwrite(filePath, output)
+                output.save(filePath)
             else:
-                cv2.imwrite(filePath, output)
+                output.save(filePath)
         else:
             os.makedirs(dirPath)
-            cv2.imwrite(filePath, output)
+            output.save(filePath)
         return common.baseUrl + "/static/images/appImages/facebook/app2/" + "result" + "/" + fileName + ".jpg"

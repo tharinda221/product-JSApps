@@ -12,8 +12,6 @@ from StringIO import StringIO
 from core.imageProcessing.libs.imagesTogif import writeGif
 # import classes
 import config
-import numpy
-import cv2
 
 def writeTextToImage(text):
     BASE_DIR = config.BASE_DIR
@@ -37,11 +35,11 @@ def readImageFromURL(url, x, y):
     image = img.resize((x, y), Image.ANTIALIAS)
     return image
 
-def readImageFromURLInCV2(url,x, y):
-    req = urllib.urlopen(url)
-    arr = np.asarray(bytearray(req.read()), dtype=np.uint8)
-    img = cv2.imdecode(arr, -1)
-    return cv2.resize(img, (x, y))
+# def readImageFromURLInCV2(url,x, y):
+#     req = urllib.urlopen(url)
+#     arr = np.asarray(bytearray(req.read()), dtype=np.uint8)
+#     img = cv2.imdecode(arr, -1)
+#     return cv2.resize(img, (x, y))
 
 def createGIF(images, filename):
     writeGif(filename, images, duration=0.5)
