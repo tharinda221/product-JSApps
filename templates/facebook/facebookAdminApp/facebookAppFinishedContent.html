@@ -1,3 +1,4 @@
 {% block appDetailContent %}
-    <img class="img img-responsive" height="400px" src="{{ imageUrl }}" /></a>
+    <img id="app-image" app-id="{{ appDetails.AppID }}" style="margin-top: 50px;" class="img img-responsive" height="400px" src="{{ imageUrl }}" /></a>
+    <script src="{{ url_for('static', filename='javascripts/loadApp.js') }}"></script>
 {% endblock %}

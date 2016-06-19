@@ -13,7 +13,9 @@
         {% include "facebook/facebookAdminApp/facebookAppFinishedContent.html" %}
     {% endblock %}
     {% block facebookShare %}
-        {% include "facebook/common/facebookShare.html" %}
+        <div class="col-md-12" style="margin-top: 15px;">
+            {% include "facebook/common/facebookShare.html" %}
+        </div>
     {% endblock %}
     {% block comment %}
         {% include "facebook/common/facebookComment.html" %}
