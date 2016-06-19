@@ -120,15 +120,5 @@ class facebookAppsMethods(object):
     def vehicleFind(self, appId):
         document = databaseCollections.facebookAppsCollectionName.find_one({'_id': ObjectId(appId)})
         profileUrl = getUserProfilePic(session["facebook_user_token"])
-        url = "http://api.imagga.com/v1/tagging"
-
-        querystring = {"url": profileUrl, "version": "2"}
-
-        headers = {
-            'accept': "application/json",
-            'authorization': "Basic YWNjX2U0OGVmZTEyMmU2N2U5MTo0NmFmNzU3YjQyMmI0Yzc5ODQ1NTdlYzMwNTk3ZWQwNA=="
-        }
-
-        response = requests.request("GET", url, headers=headers, params=querystring)
-
-        print(response.text)
+        skill = randint(0, 6)
+        celeb, celebUrl = findSoulMate(session["facebookUser"]["gender"], skill)

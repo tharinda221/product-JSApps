@@ -89,6 +89,25 @@ def findSoulMate(gender, skill):
 
     return celebrity, celebURL
 
+def findFirstVehicle(number):
+    if number == 0:
+        name = "An Old, Turquoise Chevy Pick-up"
+        url = "http://cars.trsty.com/wp-content/uploads/2015/06/an-old-turquoise-chevy-pick-up.jpg"
+    elif number == 1:
+        name = "Range Rover"
+        url = "http://www.landroverftmyers.com/wp-content/uploads/2015/10/Evoque.jpg"
+    elif number == 2:
+        name = "honda-navi-off-road"
+        url = "http://forum.maxabout.com/uploads/default/original/2X/3/36271901354c70508431b035a1443b7b18bff650.jpg"
+    elif number == 3:
+        name = "2016 Honda FCV and new hybrids"
+        url = "http://icdn6.digitaltrends.com/image/honda-fcv-concept-das2015t_03-970x647-c.jpg"
+    elif number == 4:
+        name = "Trishaw"
+        url = "https://travel2penang.files.wordpress.com/2012/08/trishaw02.jpg"
+    else :
+        name = "Three Wheel"
+        url = "http://images.adspot.lk/wp-content/uploads/2015/11/04205208/large-green-440x340.png"
 
 def writeTextInImage(text, img, fontSize, x, y):
     draw = ImageDraw.Draw(img)
