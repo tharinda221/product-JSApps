@@ -90,6 +90,7 @@ def findSoulMate(gender, skill):
     return celebrity, celebURL
 
 def findFirstVehicle(number):
+    name, url = "", ""
     if number == 0:
         name = "An Old, Turquoise Chevy Pick-up"
         url = "http://cars.trsty.com/wp-content/uploads/2015/06/an-old-turquoise-chevy-pick-up.jpg"
@@ -108,6 +109,8 @@ def findFirstVehicle(number):
     else :
         name = "Three Wheel"
         url = "http://images.adspot.lk/wp-content/uploads/2015/11/04205208/large-green-440x340.png"
+
+    return name, url
 
 def writeTextInImage(text, img, fontSize, x, y):
     draw = ImageDraw.Draw(img)

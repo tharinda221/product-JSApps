@@ -120,5 +120,28 @@ class facebookAppsMethods(object):
     def vehicleFind(self, appId):
         document = databaseCollections.facebookAppsCollectionName.find_one({'_id': ObjectId(appId)})
         profileUrl = getUserProfilePic(session["facebook_user_token"])
-        skill = randint(0, 6)
-        celeb, celebUrl = findSoulMate(session["facebookUser"]["gender"], skill)
+        number = randint(0, 5)
+        name, Url = findFirstVehicle(number)
+        userImage = readImageFromURL(profileUrl, 150, 150)
+        vehicleImage = readImageFromURL(Url, 150, 150)
+        background = Image.open(config.pathToStatic + document["AppSourceImage"])
+        background.paste(userImage, (37, 127))
+        background.paste(vehicleImage, (436, 127))
+        writeTextInImage(session["facebookUser"]["userName"], background, 20, 37, 290)
+        writeTextInImage(name, background, 20, 436, 290)
+        fileName = str(session["facebookUser"]["userId"])
+        dirPath = config.pathToAppsImage + "app2" + "/result"
+        filePath = config.pathToAppsImage + "app2" + "/result" + "/" + fileName + ".jpg"
+        if os.path.isdir(dirPath):
+            if os.path.exists(filePath):
+                os.remove(filePath)
+                background.save(filePath)
+            else:
+                background.save(filePath)
+        else:
+            os.makedirs(dirPath)
+            background.save(filePath)
+        # return config.pathToAppsImage + "app1" + "/" + fileName + ".jpg"
+        return common.baseUrl + "/static/images/appImages/facebook/app2/" + "result" + "/" + fileName + ".jpg"
+
+
