@@ -96,23 +96,39 @@ class facebookAppsMethods(object):
         # return config.pathToAppsImage + "app1" + "/" + fileName + ".jpg"
         return common.baseUrl + "/static/images/appImages/facebook/app1/" + "result" + "/" + fileName + ".jpg"
 
-    def cartooning(self, appId):
+    # def cartooning(self, appId):
+    #     document = databaseCollections.facebookAppsCollectionName.find_one({'_id': ObjectId(appId)})
+    #     url = getUserProfilePic(session["facebook_user_token"])
+    #     userImage = readImageFromURL(url, 500, 500)
+    #     output = cartoonize(userImage)
+    #     output = Image.fromarray(output)
+    #     # save file
+    #     fileName = str(session["facebookUser"]["userId"])
+    #     dirPath = config.pathToAppsImage + "app2" + "/result"
+    #     filePath = config.pathToAppsImage + "app2" + "/result" + "/" + fileName + ".jpg"
+    #     if os.path.isdir(dirPath):
+    #         if os.path.exists(filePath):
+    #             os.remove(filePath)
+    #             output.save(filePath)
+    #         else:
+    #             output.save(filePath)
+    #     else:
+    #         os.makedirs(dirPath)
+    #         output.save(filePath)
+    #     return common.baseUrl + "/static/images/appImages/facebook/app2/" + "result" + "/" + fileName + ".jpg"
+
+    def vehicleFind(self, appId):
         document = databaseCollections.facebookAppsCollectionName.find_one({'_id': ObjectId(appId)})
-        url = getUserProfilePic(session["facebook_user_token"])
-        userImage = readImageFromURL(url, 500, 500)
-        output = cartoonize(userImage)
-        output = Image.fromarray(output)
-        # save file
-        fileName = str(session["facebookUser"]["userId"])
-        dirPath = config.pathToAppsImage + "app2" + "/result"
-        filePath = config.pathToAppsImage + "app2" + "/result" + "/" + fileName + ".jpg"
-        if os.path.isdir(dirPath):
-            if os.path.exists(filePath):
-                os.remove(filePath)
-                output.save(filePath)
-            else:
-                output.save(filePath)
-        else:
-            os.makedirs(dirPath)
-            output.save(filePath)
-        return common.baseUrl + "/static/images/appImages/facebook/app2/" + "result" + "/" + fileName + ".jpg"
+        profileUrl = getUserProfilePic(session["facebook_user_token"])
+        url = "http://api.imagga.com/v1/tagging"
+
+        querystring = {"url": profileUrl, "version": "2"}
+
+        headers = {
+            'accept': "application/json",
+            'authorization': "Basic YWNjX2U0OGVmZTEyMmU2N2U5MTo0NmFmNzU3YjQyMmI0Yzc5ODQ1NTdlYzMwNTk3ZWQwNA=="
+        }
+
+        response = requests.request("GET", url, headers=headers, params=querystring)
+
+        print(response.text)

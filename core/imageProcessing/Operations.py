@@ -5,13 +5,13 @@ from PIL import Image, ImageSequence
 from PIL import ImageFont
 from PIL import ImageDraw
 
-
 import requests
 import numpy as np
 from StringIO import StringIO
 from core.imageProcessing.libs.imagesTogif import writeGif
 # import classes
 import config
+
 
 def writeTextToImage(text):
     BASE_DIR = config.BASE_DIR
@@ -35,11 +35,6 @@ def readImageFromURL(url, x, y):
     image = img.resize((x, y), Image.ANTIALIAS)
     return image
 
-# def readImageFromURLInCV2(url,x, y):
-#     req = urllib.urlopen(url)
-#     arr = np.asarray(bytearray(req.read()), dtype=np.uint8)
-#     img = cv2.imdecode(arr, -1)
-#     return cv2.resize(img, (x, y))
 
 def createGIF(images, filename):
     writeGif(filename, images, duration=0.5)
@@ -76,16 +71,16 @@ def findSoulMate(gender, skill):
         elif skill == 1:
             celebrity = "Tharu Kumara"
             celebURL = "https://i.ytimg.com/vi/1CYflZReeEE/hqdefault.jpg"
-        elif skill ==2:
+        elif skill == 2:
             celebrity = "ranbir kapoor"
             celebURL = "http://economictimes.indiatimes.com/photo/48239734.cms"
-        elif skill ==3:
+        elif skill == 3:
             celebrity = "justin bieber"
             celebURL = "http://pixel.nymag.com/imgs/daily/vulture/2016/01/04/4-justin-bieber-cornrows.w529.h529.jpg"
-        elif skill ==4:
+        elif skill == 4:
             celebrity = "Daniel Radcliffe"
             celebURL = "http://instinctmagazine.com/sites/instinctmagazine.com/files/images/blog_posts/Nigel%20Campbell/2016/01/24/daniel%20radcliffe.jpg"
-        elif skill ==5:
+        elif skill == 5:
             celebrity = "Bill Gates"
             celebURL = "http://aib.edu.au/blog/wp-content/uploads/2015/08/bill-gates-jpg.jpg"
         else:
@@ -94,7 +89,8 @@ def findSoulMate(gender, skill):
 
     return celebrity, celebURL
 
-def writeTextInImage(text,img,fontSize, x, y):
+
+def writeTextInImage(text, img, fontSize, x, y):
     draw = ImageDraw.Draw(img)
     logging.error(config.fontPath + "sans-serif.ttf")
     font = ImageFont.truetype(config.fontPath + "sans-serif.ttf", fontSize)
