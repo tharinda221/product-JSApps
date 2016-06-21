@@ -24,9 +24,9 @@ class FacebookApplicationAPI(Resource):
                 'imageUrl': session["fileName"],
                 'appId': appId,
                 'facebookShare': "https://www.facebook.com/dialog/feed?app_id=1686276391610614&"
-                                 "link=http://jsapps.com/facebook/appDetails/adminApp/" + obj.AppID +
+                                 "link=http://jsapps.com/facebook/appDetails/adminApp/" + str(obj.AppID) +
                                  "&picture=" +session["fileName"] + "&name=" + obj.AppName +
-                                 "&caption=JSApps.co&description=" + obj.AppDescription + ""
+                                 "&caption=JSApps.co&description=" + str(obj.AppDescription)
             }
             js = json.dumps(data)
 
