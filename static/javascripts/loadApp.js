@@ -11,5 +11,6 @@ $(document).ready(function(){
     $.get(image_url).done(function(data){
         console.log('data : '+data['imageUrl']);
         $('#app-image').attr('src', data['imageUrl']);
+        $('#facebook-share').attr('picture', data['imageUrl']);
     })
 });
