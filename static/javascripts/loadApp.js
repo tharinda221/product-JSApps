@@ -11,9 +11,12 @@ $(document).ready(function(){
     $.get(image_url).done(function(data){
         console.log('data : '+data['imageUrl']);
         $('#app-image').attr('src', data['imageUrl']);
-        var facebookHref = $('#facebook-share').attr('href');
-        facebookHref = facebookHref.replace('######', data['imageUrl']);
-        $('#facebook-share').attr('href', facebookHref);
+        // var facebookHref = $('#facebook-share').attr('href');
+        // facebookHref = facebookHref.replace('######', data['imageUrl']);
+        // $('#facebook-share').attr('href', facebookHref);
+        var url = $('#facebook-share').attr('href');
+        url = url.replace('######', data['imageUrl']);
+        $('#facebook-share').attr('href', url);
         $('#facebook-share').show();
     })
 });
