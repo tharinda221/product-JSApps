@@ -11,6 +11,9 @@ $(document).ready(function(){
     $.get(image_url).done(function(data){
         console.log('data : '+data['imageUrl']);
         $('#app-image').attr('src', data['imageUrl']);
-        $('#facebook-share').attr('href', data['facebookShare']);
+        var facebookHref = $('#facebook-share').attr('href');
+        facebookHref = facebookHref.replace('######', data['imageUrl']);
+        $('#facebook-share').attr('href', facebookHref);
+        $('#facebook-share').show();
     })
 });

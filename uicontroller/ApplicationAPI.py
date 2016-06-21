@@ -29,7 +29,7 @@ class FacebookApplicationAPI(Resource):
                                  "&caption=JSApps.co&description=" + str(obj.AppDescription)
             }
             js = json.dumps(data)
-
+            print js
             resp = Response(js, status=200, mimetype='application/json')
 
             return resp
