@@ -8,6 +8,7 @@ from core.common.Constants import *
 
 runApplicaions = facebookAppsMethods()
 
+
 class FacebookApplicationAPI(Resource):
     def get(self, appId):
         userAuthorized = True if "facebook_user_token" in session else False
@@ -22,6 +23,10 @@ class FacebookApplicationAPI(Resource):
             data = {
                 'imageUrl': session["fileName"],
                 'appId': appId,
+                'facebookShare': "https://www.facebook.com/dialog/feed?app_id=1686276391610614&"
+                                 "link=http://jsapps.com/facebook/appDetails/adminApp/" + obj.AppID +
+                                 "&picture=" +session["fileName"] + "&name=" + obj.AppName +
+                                 "&caption=JSApps.co&description=" + obj.AppDescription + ""
             }
             js = json.dumps(data)
 
