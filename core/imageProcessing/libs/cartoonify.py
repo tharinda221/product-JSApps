@@ -1,6 +1,6 @@
 import numpy as np
 from collections import defaultdict
-from scipy import stats
+# from scipy import stats
 import cv2
 #
 # def cartoonize(image):
