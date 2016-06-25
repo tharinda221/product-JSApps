@@ -17,7 +17,8 @@ class common:
     ApplicationSecret = ""
     numOfAppsPerPage = 8
     # baseUrl = "http://localhost:5000"
-    baseUrl = "http://jsapps.co"
+    # baseUrl = "http://jsapps.co"
+    baseUrl = "http://ec2-54-191-86-102.us-west-2.compute.amazonaws.com/"
 
 
 class facebookConstants:
@@ -29,8 +30,11 @@ class facebookConstants:
     # secretKey = "ff8f450170fda495761a8eb648044904"
     # appID = "1000944106647575"
     # JSApps credentials
-    secretKey = "ef77aabd222d3c5fe509d1984aa791f6"
-    appID = "1686276391610614"
+    # secretKey = "ef77aabd222d3c5fe509d1984aa791f6"
+    # appID = "1686276391610614"
+    secretKey = "e1bce2cbf5adba1f3a8ce71b49d25c79"
+    appID = "1060114704056743"
+    # JSAppsTets credentials
     GraphAPIVersion = "v2.5"
     redirectURL = common.baseUrl + "/callback/facebook"
     baseGraphApiUrl = "https://graph.facebook.com/v2.5/"
