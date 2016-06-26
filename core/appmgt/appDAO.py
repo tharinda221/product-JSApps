@@ -14,9 +14,9 @@ def putFacebookAppsData():
             {
                 "AppName": "Cartooning your profile pic",
                 "AppMethodName": "cartooning",
-                "AppImage": "images/appImages/facebook/app2/appImage.jpg",
-                "AppSourceImage": "images/appImages/facebook/app2/background.jpg",
-                "AppResultImage": "images/appImages/facebook/app2/appResultImage.jpg",
+                "AppImage": "images/appImages/facebook/app3/appImage.jpg",
+                "AppSourceImage": "images/appImages/facebook/app3/background.jpg",
+                "AppResultImage": "images/appImages/facebook/app3/appResultImage.png",
                 "AppUsedCount": 0,
                 "AppCreatedTime": datetime.datetime.utcnow(),
                 "AppDescription": "App is created to convert profile pictures into cartoon image. Enjoy the App",
@@ -27,7 +27,7 @@ def putFacebookAppsData():
     )
     logging.info("Inserted FacebookApp data")
 
-#putFacebookAppsData()
+# putFacebookAppsData()
 
 def FacebookUserCreatableAppsData(AppName, AppDescription):
     id = databaseCollections.facebookUserCreatableAppsCollectionName.insert({})

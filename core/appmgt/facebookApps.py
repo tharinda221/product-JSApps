@@ -97,7 +97,7 @@ class facebookAppsMethods(object):
         return common.baseUrl + "/static/images/appImages/facebook/app1/" + "result" + "/" + fileName + ".jpg"
 
     def cartooning(self, appId):
-        document = databaseCollections.facebookAppsCollectionName.find_one({'_id': ObjectId(appId)})
+        # document = databaseCollections.facebookAppsCollectionName.find_one({'_id': ObjectId(appId)})
         url = getUserProfilePic(session["facebook_user_token"])
         userImage = readImageFromURLCV2(url, 500, 500)
         tmp_canvas = Cartoonizer()
