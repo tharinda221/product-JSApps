@@ -51,7 +51,7 @@ class Cartoonizer:
         (x,y,z) = img_color.shape
         img_edge = cv2.resize(img_edge,(y,x))
         img_edge = cv2.cvtColor(img_edge, cv2.COLOR_GRAY2RGB)
-        cv2.imwrite("edge.png",img_edge)
+        #cv2.imwrite("edge.png",img_edge)
         #cv2.imshow("step 5", img_edge)
         #cv2.waitKey(0)
         #img_edge = cv2.resize(img_edge,(i for i in img_color.shape[:2]))
