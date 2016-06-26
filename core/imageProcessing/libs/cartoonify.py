@@ -1,127 +1,61 @@
-import numpy as np
-from collections import defaultdict
-# from scipy import stats
 import cv2
-#
-# def cartoonize(image):
-#     """
-#     convert image into cartoon-like image
-#
-#     image: input PIL image
-#     """
-#
-#     output = np.array(image)
-#     x, y, c = output.shape
-#     # hists = []
-#     for i in xrange(c):
-#         output[:, :, i] = cv2.bilateralFilter(output[:, :, i], 5, 50, 50)
-#         # hist, _ = np.histogram(output[:, :, i], bins=np.arange(256+1))
-#         # hists.append(hist)
-#     edge = cv2.Canny(output, 100, 200)
-#
-#     output = cv2.cvtColor(output, cv2.COLOR_RGB2HSV)
-#
-#     hists = []
-#     #H
-#     hist, _ = np.histogram(output[:, :, 0], bins=np.arange(180+1))
-#     hists.append(hist)
-#     #S
-#     hist, _ = np.histogram(output[:, :, 1], bins=np.arange(256+1))
-#     hists.append(hist)
-#     #V
-#     hist, _ = np.histogram(output[:, :, 2], bins=np.arange(256+1))
-#     hists.append(hist)
-#
-#     C = []
-#     for h in hists:
-#         C.append(k_histogram(h))
-#     #print("centroids: {0}".format(C))
-#
-#     output = output.reshape((-1, c))
-#     for i in xrange(c):
-#         channel = output[:, i]
-#         index = np.argmin(np.abs(channel[:, np.newaxis] - C[i]), axis=1)
-#         output[:, i] = C[i][index]
-#     output = output.reshape((x, y, c))
-#     output = cv2.cvtColor(output, cv2.COLOR_HSV2RGB)
-#
-#     contours, _ = cv2.findContours(edge,
-#                                    cv2.RETR_EXTERNAL,
-#                                    cv2.CHAIN_APPROX_NONE)
-#     # for i in range(len(contours)):
-#     #     tmp = contours[i]
-#     #     contours[i] = cv2.approxPolyDP(tmp, 2, False)
-#     cv2.drawContours(output, contours, -1, 0, thickness=1)
-#     return output
-#
-#
-# def update_C(C, hist):
-#     """
-#     update centroids until they don't change
-#     """
-#     while True:
-#         groups = defaultdict(list)
-#         #assign pixel values
-#         for i in range(len(hist)):
-#             if hist[i] == 0:
-#                 continue
-#             d = np.abs(C-i)
-#             index = np.argmin(d)
-#             groups[index].append(i)
-#
-#         new_C = np.array(C)
-#         for i, indice in groups.items():
-#             if np.sum(hist[indice]) == 0:
-#                 continue
-#             new_C[i] = int(np.sum(indice*hist[indice])/np.sum(hist[indice]))
-#         if np.sum(new_C-C) == 0:
-#             break
-#         C = new_C
-#     return C, groups
-#
-#
-# def k_histogram(hist):
-#     """
-#     choose the best K for k-means and get the centroids
-#     """
-#     alpha = 0.001              # p-value threshold for normaltest
-#     N = 80                      # minimun group size for normaltest
-#     C = np.array([128])
-#
-#     while True:
-#         C, groups = update_C(C, hist)
-#
-#         #start increase K if possible
-#         new_C = set()     # use set to avoid same value when seperating centroid
-#         for i, indice in groups.items():
-#             #if there are not enough values in the group, do not seperate
-#             if len(indice) < N:
-#                 new_C.add(C[i])
-#                 continue
-#
-#             # judge whether we should seperate the centroid
-#             # by testing if the values of the group is under a
-#             # normal distribution
-#             z, pval = stats.normaltest(hist[indice])
-#             if pval < alpha:
-#                 #not a normal dist, seperate
-#                 left = 0 if i == 0 else C[i-1]
-#                 right = len(hist)-1 if i == len(C)-1 else C[i+1]
-#                 delta = right-left
-#                 if delta >= 3:
-#                     c1 = (C[i]+left)/2
-#                     c2 = (C[i]+right)/2
-#                     new_C.add(c1)
-#                     new_C.add(c2)
-#                 else:
-#                     # though it is not a normal dist, we have no
-#                     # extra space to seperate
-#                     new_C.add(C[i])
-#             else:
-#                 # normal dist, no need to seperate
-#                 new_C.add(C[i])
-#         if len(new_C) == len(C):
-#             break
-#         else:
-#             C = np.array(sorted(new_C))
-#     return C
+import numpy as np
+import math
+
+def cartoonize(a, N, p, input_image):
+    #Phase 1 : color staircasing #########################################################################################################
+
+    # Then We Do Bilateral Filtering with k1 = kernal size and N = number of iterations
+    # We do Median Filtering
+    # Color quantization floor factor = a
+
+    for x in range(0,N):
+        bilateral_filtimg = cv2.bilateralFilter(input_image,9,75,75)
+
+    median_filtimg = cv2.medianBlur(bilateral_filtimg,5)
+
+    [rows,cols,c] = median_filtimg.shape
+    colorquantimg = median_filtimg
+    for i in xrange(0,rows):
+        for j in xrange(0,cols):
+            xb = median_filtimg.item(i,j,0)
+            xg = median_filtimg.item(i,j,1)
+            xr = median_filtimg.item(i,j,2)
+            xb = math.floor(xb/a)*a
+            xg = math.floor(xg/a)*a
+            xr = math.floor(xr/a)*a
+            colorquantimg.itemset((i,j,0),xb)
+            colorquantimg.itemset((i,j,1),xg)
+            colorquantimg.itemset((i,j,2),xr)
+
+        # Phase2 : Edge Extraction ############################################################################################################
+
+        # Appy Median Filter to the image
+        # Canny Edge Detection
+        # Dialation of the detected edges
+        # Edgefilter
+        #p = cv2.getTrackbarPos('Canny Threshold','Toonified Image')
+
+    median_filtimg2 = cv2.medianBlur(input_image,5)
+
+    edges = cv2.Canny(median_filtimg2,p,2*p)
+    dialateimg =  cv2.dilate(edges,np.ones((3,3),'uint8'))
+    edges_inv = cv2.bitwise_not(dialateimg)
+    ret,thresh = cv2.threshold(edges_inv,127,255,0)
+        #cv2.imshow('edges',thresh)
+    contours, hierarchy = cv2.findContours(thresh,1,2)
+    img_contours = cv2.drawContours(thresh, contours, -1, (0,0,0), 3)
+        #cv2.imshow('counters',img_contours)
+
+        ############################### Recombine both the images ##############################################################################
+    global finalimg
+    finalimg = colorquantimg
+    for i in xrange(0,rows):
+        for j in xrange(0,cols):
+            if edges_inv.item(i,j) == 0:
+                finalimg.itemset((i,j,0),0)
+                finalimg.itemset((i,j,1),0)
+                finalimg.itemset((i,j,2),0)
+    # cv2.imshow('Toonified Image',finalimg)
+    # cv2.waitKey(0)
+    return finalimg

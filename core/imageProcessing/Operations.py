@@ -1,6 +1,8 @@
 # import libraries
 import logging
 import urllib
+
+import cv2
 from PIL import Image, ImageSequence
 from PIL import ImageFont
 from PIL import ImageDraw
@@ -34,6 +36,14 @@ def readImageFromURL(url, x, y):
     img = Image.open(file)
     image = img.resize((x, y), Image.ANTIALIAS)
     return image
+
+def readImageFromURLCV2(url, x, y):
+    resp = urllib.urlopen(url)
+    image = np.asarray(bytearray(resp.read()), dtype="uint8")
+    image = cv2.imdecode(image, cv2.IMREAD_COLOR)
+    resized_image = cv2.resize(image, (x, y))
+    # return the image
+    return resized_image
 
 
 def createGIF(images, filename):
