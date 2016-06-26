@@ -100,7 +100,8 @@ class facebookAppsMethods(object):
         document = databaseCollections.facebookAppsCollectionName.find_one({'_id': ObjectId(appId)})
         url = getUserProfilePic(session["facebook_user_token"])
         userImage = readImageFromURLCV2(url, 500, 500)
-        output = cartoonize(24, 5, 120, userImage)
+        tmp_canvas = Cartoonizer()
+        output = tmp_canvas.render(userImage)
         # save file
         fileName = str(session["facebookUser"]["userId"])
         dirPath = config.pathToAppsImage + "app2" + "/result"
