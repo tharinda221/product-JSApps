@@ -104,8 +104,8 @@ class facebookAppsMethods(object):
         output = tmp_canvas.render(userImage)
         # save file
         fileName = str(session["facebookUser"]["userId"])
-        dirPath = config.pathToAppsImage + "app2" + "/result"
-        filePath = config.pathToAppsImage + "app2" + "/result" + "/" + fileName + ".jpg"
+        dirPath = config.pathToAppsImage + "app3" + "/result"
+        filePath = config.pathToAppsImage + "app3" + "/result" + "/" + fileName + ".jpg"
         if os.path.isdir(dirPath):
             if os.path.exists(filePath):
                 os.remove(filePath)
@@ -118,7 +118,7 @@ class facebookAppsMethods(object):
             os.makedirs(dirPath)
             # output.save(filePath)
             cv2.imwrite(filePath, output)
-        return common.baseUrl + "/static/images/appImages/facebook/app2/" + "result" + "/" + fileName + ".jpg"
+        return common.baseUrl + "/static/images/appImages/facebook/app3/" + "result" + "/" + fileName + ".jpg"
 
     def vehicleFind(self, appId):
         document = databaseCollections.facebookAppsCollectionName.find_one({'_id': ObjectId(appId)})
