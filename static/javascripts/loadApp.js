@@ -14,9 +14,11 @@ $(document).ready(function(){
         // var facebookHref = $('#facebook-share').attr('href');
         // facebookHref = facebookHref.replace('######', data['imageUrl']);
         // $('#facebook-share').attr('href', facebookHref);
-        var url = $('#facebook-share').attr('href');
-        url = url.replace('######', data['imageUrl']);
-        $('#facebook-share').attr('href', url);
-        $('#facebook-share').show();
+        setTimeout( function () {
+            var url = $('#facebook-share').attr('href');
+            url = url.replace('######', data['imageUrl']);
+            $('#facebook-share').attr('href', url);
+            $('#facebook-share').show();
+        }, 2000);
     })
 });

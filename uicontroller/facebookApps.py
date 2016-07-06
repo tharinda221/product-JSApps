@@ -28,7 +28,7 @@ class runFacebookApplication(Resource):
             userName = session["facebookUser"]["userName"]
             facebookCommentUrl = common.baseUrl + '/facebook/' + appId
             # imageUrl = common.baseUrl + '/image/' + appId
-            imageUrl = "http://www.owlhatworld.com/wp-content/uploads/2015/12/38.gif"
+            imageUrl = "http://i.imgur.com/8YsAmq3.gif"
             # get related Apps
             relatedList = getAppIDsByLabel(obj.AppLabel)
             relatedList.sort(key=lambda obj: obj.AppUsedCount, reverse=True)
