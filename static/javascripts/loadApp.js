@@ -19,6 +19,6 @@ $(document).ready(function(){
             url = url.replace('######', data['imageUrl']);
             $('#facebook-share').attr('href', url);
             $('#facebook-share').show();
-        }, 3000);
+        }, 1000);
     })
 });

@@ -130,8 +130,8 @@ class facebookAppsMethods(object):
         background = Image.open(config.pathToStatic + document["AppSourceImage"])
         background.paste(userImage, (51, 181))
         background.paste(vehicleImage, (320, 150))
-        writeTextInImage(session["facebookUser"]["userName"], background, 20, 37, 290, "white")
-        writeTextInImage(name, background, 20, 436, 290, "white")
+        writeTextInImage(session["facebookUser"]["userName"], background, 25, 37, 290, "white")
+        writeTextInImage(name, background, 25, 436, 290, "white")
         fileName = str(session["facebookUser"]["userId"])
         dirPath = config.pathToAppsImage + "app2" + "/result"
         filePath = config.pathToAppsImage + "app2" + "/result" + "/" + fileName + ".jpg"
