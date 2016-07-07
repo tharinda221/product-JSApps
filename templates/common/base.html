@@ -28,38 +28,40 @@
 
 <body style="padding: 0px">
 {% block content %}
-
-    <div  style="height: 70px;background-color: #3b5998; color: #f7f7f7">
-        {% block header %}
-        {% endblock %}
-    </div>
-
-    <div class="container">
-
-        <div class="row" style="margin-top: 20px">
-            {% block Links %}
+    <div style="min-height: 600px">
+        <div  style="height: 70px;background-color: #3b5998; color: #f7f7f7">
+            {% block header %}
             {% endblock %}
         </div>
 
-        <div class="row" style="margin-top: 10px;">
-            {% block pageContent %}
-                    <div id="content">
-                        <ul class="thumbnails">
-                            {% block app %}
+        <div class="container">
 
-                            {% endblock %}
-                        </ul>
-                        <div class="pagination">
-                            {% block pagination %}
+            <div class="row" style="margin-top: 20px">
+                {% block Links %}
+                {% endblock %}
+            </div>
 
-                            {% endblock %}
+            <div class="row" style="margin-top: 10px;">
+                {% block pageContent %}
+                        <div id="content">
+                            <ul class="thumbnails">
+                                {% block app %}
+
+                                {% endblock %}
+                            </ul>
+                            <div class="pagination">
+                                {% block pagination %}
+
+                                {% endblock %}
+                            </div>
                         </div>
-                    </div>
-            {% endblock %}
+                {% endblock %}
+            </div>
+
+
+
+
         </div>
-
-
-
 
     </div>
      {% block footer %}

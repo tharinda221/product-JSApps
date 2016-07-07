@@ -122,9 +122,13 @@ def findFirstVehicle(number):
 
     return name, url
 
-def writeTextInImage(text, img, fontSize, x, y):
+def writeTextInImage(text, img, fontSize, x, y, colour):
+    if colour == "black":
+        colour = (0,0,0)
+    if colour == "white":
+        colour = (255,255,255)
     draw = ImageDraw.Draw(img)
-    logging.error(config.fontPath + "sans-serif.ttf")
-    font = ImageFont.truetype(config.fontPath + "sans-serif.ttf", fontSize)
-    draw.text((x, y), text, (0, 0, 0), font=font)
+    # logging.error(config.fontPath + "Helvetica.otf")
+    font = ImageFont.truetype(config.fontPath + "Helvetica.ttf", fontSize)
+    draw.text((x, y), text, colour, font=font)
     return img
