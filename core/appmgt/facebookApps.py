@@ -79,8 +79,8 @@ class facebookAppsMethods(object):
         background = Image.open(config.pathToStatic + document["AppSourceImage"])
         background.paste(userImage, (70, 170))
         background.paste(celebImage, (488, 170))
-        writeTextInImage(session["facebookUser"]["userName"], background, 20, 70, 335, "black")
-        writeTextInImage(celeb, background, 20, 488, 335, "black")
+        writeTextInImage(session["facebookUser"]["userName"], background, 30, 70, 260, "black")
+        writeTextInImage(celeb, background, 30, 488, 260, "black")
         fileName = str(session["facebookUser"]["userId"])
         dirPath= config.pathToAppsImage + "app1" + "/result"
         filePath= config.pathToAppsImage + "app1" + "/result" + "/" + fileName + ".jpg"
@@ -130,8 +130,8 @@ class facebookAppsMethods(object):
         background = Image.open(config.pathToStatic + document["AppSourceImage"])
         background.paste(userImage, (51, 181))
         background.paste(vehicleImage, (320, 150))
-        writeTextInImage(session["facebookUser"]["userName"], background, 25, 37, 290, "white")
-        writeTextInImage(name, background, 25, 436, 290, "white")
+        writeTextInImage(session["facebookUser"]["userName"], background, 25, 37, 5, "white")
+        writeTextInImage(name, background, 25, 330, 5, "white")
         fileName = str(session["facebookUser"]["userId"])
         dirPath = config.pathToAppsImage + "app2" + "/result"
         filePath = config.pathToAppsImage + "app2" + "/result" + "/" + fileName + ".jpg"
