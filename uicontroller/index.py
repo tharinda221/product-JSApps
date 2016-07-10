@@ -5,6 +5,7 @@ from __init__ import *
 from tempfile import NamedTemporaryFile
 from shutil import copyfileobj
 from os import remove
+import config
 
 
 class main(Resource):
@@ -12,17 +13,10 @@ class main(Resource):
         return redirect('/facebook')
 
 
-class tempImage(Resource):
-    def get(self, appId):
-        logging.error("user Request image")
-        tempFileObj = NamedTemporaryFile(mode='w+b', suffix='jpg')
-        # pilImage = open('/home/tharinda/Working/projects/JSApps/static/images/appImages/facebook/app1/appImage.jpg',
-        #                 'rb')
-        pilImage = open(session["fileName"], 'rb')
-        copyfileobj(pilImage, tempFileObj)
-        pilImage.close()
-        remove(session["fileName"])
-        tempFileObj.seek(0, 0)
+class ImageRendering(Resource):
+    def get(self, appName):
+        pilImage = open(config.pathToAppsImage + appName + '/result/' +
+                        str(session["facebookUser"]["userId"]) + ".jpg", 'rb')
         # response = send_file(tempFileObj, as_attachment=True, attachment_filename='image.jpg')
-        response = send_file(tempFileObj, mimetype='image/jpeg')
+        response = send_file(pilImage, mimetype='image/jpeg')
         return response

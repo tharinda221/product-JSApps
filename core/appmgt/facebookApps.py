@@ -2,6 +2,8 @@
 
 import dateutil.parser as parser
 from random import randint
+import time
+
 # import classes
 from core.socialmediamgt.facebook import *
 from core.imageProcessing.Operations import *
@@ -9,6 +11,9 @@ from core.usermgt.user import *
 from core.common.Constants import *
 import config
 from core.imageProcessing.libs.cartoonify import *
+
+delay = 5
+
 
 def random_with_N_digits(n):
     range_start = 10 ** (n - 1)
@@ -79,11 +84,11 @@ class facebookAppsMethods(object):
         background = Image.open(config.pathToStatic + document["AppSourceImage"])
         background.paste(userImage, (70, 170))
         background.paste(celebImage, (488, 170))
-        writeTextInImage(session["facebookUser"]["userName"], background, 30, 70, 260, "black")
-        writeTextInImage(celeb, background, 30, 488, 260, "black")
+        writeTextInImage(session["facebookUser"]["userName"], background, 30, 70, 450, "black")
+        writeTextInImage(celeb, background, 30, 488, 450, "black")
         fileName = str(session["facebookUser"]["userId"])
-        dirPath= config.pathToAppsImage + "app1" + "/result"
-        filePath= config.pathToAppsImage + "app1" + "/result" + "/" + fileName + ".jpg"
+        dirPath = config.pathToAppsImage + "app1" + "/result"
+        filePath = config.pathToAppsImage + "app1" + "/result" + "/" + fileName + ".jpg"
         if os.path.isdir(dirPath):
             if os.path.exists(filePath):
                 os.remove(filePath)
@@ -93,8 +98,9 @@ class facebookAppsMethods(object):
         else:
             os.makedirs(dirPath)
             background.save(filePath)
-        # return config.pathToAppsImage + "app1" + "/" + fileName + ".jpg"
-        return common.baseUrl + "/static/images/appImages/facebook/app1/" + "result" + "/" + fileName + ".jpg"
+        time.sleep(delay)
+        # return common.baseUrl + "/static/images/appImages/facebook/app1/" + "result" + "/" + fileName + ".jpg"
+        return common.baseUrl + "/image/app1"
 
     def cartooning(self, appId):
         # document = databaseCollections.facebookAppsCollectionName.find_one({'_id': ObjectId(appId)})
@@ -118,7 +124,9 @@ class facebookAppsMethods(object):
             os.makedirs(dirPath)
             # output.save(filePath)
             cv2.imwrite(filePath, output)
-        return common.baseUrl + "/static/images/appImages/facebook/app3/" + "result" + "/" + fileName + ".jpg"
+        time.sleep(delay)
+        # return common.baseUrl + "/static/images/appImages/facebook/app3/" + "result" + "/" + fileName + ".jpg"
+        return common.baseUrl + "/image/app3"
 
     def vehicleFind(self, appId):
         document = databaseCollections.facebookAppsCollectionName.find_one({'_id': ObjectId(appId)})
@@ -126,12 +134,12 @@ class facebookAppsMethods(object):
         number = randint(0, 5)
         name, Url = findFirstVehicle(number)
         userImage = readImageFromURL(profileUrl, 245, 245)
-        vehicleImage = readImageFromURL(Url, 300, 300)
+        vehicleImage = readImageFromURL(Url, 400, 300)
         background = Image.open(config.pathToStatic + document["AppSourceImage"])
         background.paste(userImage, (51, 181))
         background.paste(vehicleImage, (320, 150))
-        writeTextInImage(session["facebookUser"]["userName"], background, 25, 37, 5, "white")
-        writeTextInImage(name, background, 25, 330, 5, "white")
+        writeTextInImage(session["facebookUser"]["userName"], background, 25, 37, 450, "white")
+        writeTextInImage(name, background, 25, 330, 450, "white")
         fileName = str(session["facebookUser"]["userId"])
         dirPath = config.pathToAppsImage + "app2" + "/result"
         filePath = config.pathToAppsImage + "app2" + "/result" + "/" + fileName + ".jpg"
@@ -145,6 +153,6 @@ class facebookAppsMethods(object):
             os.makedirs(dirPath)
             background.save(filePath)
         # return config.pathToAppsImage + "app1" + "/" + fileName + ".jpg"
-        return common.baseUrl + "/static/images/appImages/facebook/app2/" + "result" + "/" + fileName + ".jpg"
-
-
+        time.sleep(delay)
+        # return common.baseUrl + "/static/images/appImages/facebook/app2/" + "result" + "/" + fileName + ".jpg"
+        return common.baseUrl + "/image/app2"

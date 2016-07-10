@@ -9,16 +9,19 @@ $(document).ready(function(){
     console.log('image_utl :'+ image_url);
 
     $.get(image_url).done(function(data){
-        // var facebookHref = $('#facebook-share').attr('href');
-        // facebookHref = facebookHref.replace('######', data['imageUrl']);
-        // $('#facebook-share').attr('href', facebookHref);
-        setTimeout( function () {
-            console.log('data : '+data['imageUrl']);
-            $('#app-image').attr('src', data['imageUrl']);
-            var url = $('#facebook-share').attr('href');
-            url = url.replace('######', data['imageUrl']);
-            $('#facebook-share').attr('href', url);
-            $('#facebook-share').show();
-        }, 3000);
+        console.log('data : '+data['imageUrl']);
+        $('#app-image').attr('src', data['imageUrl']);
+        var url = $('#facebook-share').attr('href');
+        url = url.replace('######', data['imageUrl']);
+        $('#facebook-share').attr('href', url);
+        $('#facebook-share').show();
+        // setTimeout( function () {
+        //     console.log('data : '+data['imageUrl']);
+        //     $('#app-image').attr('src', data['imageUrl']);
+        //     var url = $('#facebook-share').attr('href');
+        //     url = url.replace('######', data['imageUrl']);
+        //     $('#facebook-share').attr('href', url);
+        //     $('#facebook-share').show();
+        // }, 3000);
     })
 });
