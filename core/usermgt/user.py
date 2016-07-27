@@ -6,8 +6,10 @@ class facebookUser:
                  hometown="",
                  email="",
                  education=[],
-                 about=""
+                 about="",
+                 image = ""
                  ):
+        self.image = image
         self.about = about
         self.education = education
         self.email = email

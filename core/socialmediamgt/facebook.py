@@ -49,7 +49,8 @@ def getFacebookUserInfo(accesstoken):
                                 hometown=facebookUserObj.hometown,
                                 email=facebookUserObj.email,
                                 education=facebookUserObj.education,
-                                about=facebookUserObj.about)
+                                about=facebookUserObj.about,
+                                image="")
             putFacebookUserData(user)
 
 

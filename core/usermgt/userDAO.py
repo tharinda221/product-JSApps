@@ -4,6 +4,7 @@ from core.common.Constants import *
 from core.usermgt.user import facebookUser
 from core.usermgt.user import twitterUser
 
+
 def putFacebookUserData(user):
     databaseCollections.userFBCollectionName.insert_one(
         {
@@ -14,14 +15,26 @@ def putFacebookUserData(user):
             "hometown": user.hometown,
             "email": user.email,
             "education": user.education,
-            "about": user.about
+            "about": user.about,
+            "image": ""
         }
     )
     logging.info("Inserted facebookUser data")
 
 
+def updateFacebookUserImage(image_str, userId):
+    databaseCollections.userFBCollectionName.update_one(
+        {
+            "userId": userId
+        },
+        {"$set": {
+            "image": image_str
+        }}
+    )
 
-
+def getFacebookUserImage(userId):
+    document = databaseCollections.userFBCollectionName.find_one({'userId': userId})
+    return document["image"]
 
 def putTwitterUserData(user):
     databaseCollections.userTwitterCollectionName.insert_one(
@@ -36,7 +49,6 @@ def putTwitterUserData(user):
         }
     )
     logging.info("Inserted twitterUser data")
-
 
 def putAppOwnerData(user):
     databaseCollections.appOwnerCollectionName.insert_one(
@@ -53,13 +65,11 @@ def putAppOwnerData(user):
     )
     logging.info("Inserted App owners data")
 
-
 def getFacebookUserAvailability(userId):
     if databaseCollections.userFBCollectionName.find({'userId': userId}).count() > 0:
         return False
     else:
         return True
-
 
 def getTwitterUserAvailability(userScreenName):
     if databaseCollections.userTwitterCollectionName.find({'userScreenName': userScreenName}).count() > 0:

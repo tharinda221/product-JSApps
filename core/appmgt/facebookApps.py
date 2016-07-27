@@ -12,7 +12,7 @@ from core.common.Constants import *
 import config
 from core.imageProcessing.libs.cartoonify import *
 
-delay = 5
+delay = 1
 
 
 def random_with_N_digits(n):
@@ -100,7 +100,7 @@ class facebookAppsMethods(object):
             background.save(filePath)
         time.sleep(delay)
         # return common.baseUrl + "/static/images/appImages/facebook/app1/" + "result" + "/" + fileName + ".jpg"
-        return common.baseUrl + "/image/app1"
+        return common.baseUrl + "/image/app1", background
 
     def cartooning(self, appId):
         # document = databaseCollections.facebookAppsCollectionName.find_one({'_id': ObjectId(appId)})
@@ -126,7 +126,7 @@ class facebookAppsMethods(object):
             cv2.imwrite(filePath, output)
         time.sleep(delay)
         # return common.baseUrl + "/static/images/appImages/facebook/app3/" + "result" + "/" + fileName + ".jpg"
-        return common.baseUrl + "/image/app3"
+        return common.baseUrl + "/image/app3", "opencv"
 
     def vehicleFind(self, appId):
         document = databaseCollections.facebookAppsCollectionName.find_one({'_id': ObjectId(appId)})
@@ -155,4 +155,4 @@ class facebookAppsMethods(object):
         # return config.pathToAppsImage + "app1" + "/" + fileName + ".jpg"
         time.sleep(delay)
         # return common.baseUrl + "/static/images/appImages/facebook/app2/" + "result" + "/" + fileName + ".jpg"
-        return common.baseUrl + "/image/app2"
+        return common.baseUrl + "/image/app2", background
