@@ -44,5 +44,5 @@ api.add_resource(about, '/about', endpoint='/about')
 api.add_resource(privacy, '/privacy', endpoint='/privacy')
 
 api.add_resource(createApp, '/facebook/createApp', endpoint='/facebook/createApp')
-api.add_resource(ImageRendering, '/image/<appName>')
+# api.add_resource(ImageRendering, '/image/<appName>')
 api.add_resource(FacebookApplicationAPI, '/facebook/getResultImage/<appId>')

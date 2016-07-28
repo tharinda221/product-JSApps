@@ -23,12 +23,13 @@ class FacebookApplicationAPI(Resource):
             method = getattr(runApplicaions, method_name)
             if not method:
                 raise Exception("Method %s not implemented" % method_name)
-            session["fileName"], OtImage = method(appId)
-            if not OtImage == "opencv":
-                buffer = cStringIO.StringIO()
-                OtImage.save(buffer, format="JPEG")
-                img_str = base64.b64encode(buffer.getvalue())
-                updateFacebookUserImage(img_str, session["facebookUser"]["userId"])
+            session["fileName"] = method(appId)
+            # session["fileName"], OtImage = method(appId)
+            # if not OtImage == "opencv":
+            #     buffer = cStringIO.StringIO()
+            #     OtImage.save(buffer, format="JPEG")
+            #     img_str = base64.b64encode(buffer.getvalue())
+            #     updateFacebookUserImage(img_str, session["facebookUser"]["userId"])
             data = {
                 'imageUrl': session["fileName"],
                 'appId': appId,

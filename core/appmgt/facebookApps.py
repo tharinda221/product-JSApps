@@ -99,8 +99,8 @@ class facebookAppsMethods(object):
             os.makedirs(dirPath)
             background.save(filePath)
         time.sleep(delay)
-        # return common.baseUrl + "/static/images/appImages/facebook/app1/" + "result" + "/" + fileName + ".jpg"
-        return common.baseUrl + "/image/app1", background
+        return common.baseUrl + "/static/images/appImages/facebook/app1/" + "result" + "/" + fileName + ".jpg"
+        # return common.baseUrl + "/image/app1", background
 
     def cartooning(self, appId):
         # document = databaseCollections.facebookAppsCollectionName.find_one({'_id': ObjectId(appId)})
@@ -125,8 +125,8 @@ class facebookAppsMethods(object):
             # output.save(filePath)
             cv2.imwrite(filePath, output)
         time.sleep(delay)
-        # return common.baseUrl + "/static/images/appImages/facebook/app3/" + "result" + "/" + fileName + ".jpg"
-        return common.baseUrl + "/image/app3", "opencv"
+        return common.baseUrl + "/static/images/appImages/facebook/app3/" + "result" + "/" + fileName + ".jpg"
+        # return common.baseUrl + "/image/app3", "opencv"
 
     def vehicleFind(self, appId):
         document = databaseCollections.facebookAppsCollectionName.find_one({'_id': ObjectId(appId)})
@@ -154,5 +154,5 @@ class facebookAppsMethods(object):
             background.save(filePath)
         # return config.pathToAppsImage + "app1" + "/" + fileName + ".jpg"
         time.sleep(delay)
-        # return common.baseUrl + "/static/images/appImages/facebook/app2/" + "result" + "/" + fileName + ".jpg"
-        return common.baseUrl + "/image/app2", background
+        return common.baseUrl + "/static/images/appImages/facebook/app2/" + "result" + "/" + fileName + ".jpg"
+        # return common.baseUrl + "/image/app2", background
