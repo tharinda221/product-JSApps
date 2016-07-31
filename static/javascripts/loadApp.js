@@ -11,10 +11,15 @@ $(document).ready(function(){
     $.get(image_url).done(function(data){
         console.log('data : '+data['imageUrl']);
         $('#app-image').attr('src', data['imageUrl']);
-        var url = $('#facebook-share').attr('href');
-        url = url.replace('######', data['imageUrl']);
-        $('#facebook-share').attr('href', url);
-        $('#facebook-share').show();
+
+        // var url = $('#facebook-share').attr('href');
+        // url = url.replace('######', data['imageUrl']);
+
+        var newUrl = $('#facebook-share-url').attr('href').replace('######', data['imageUrl']);
+        $('#facebook-share-url').attr('href', newUrl);
+
+        $('#facebook-share-url').attr('href', newUrl);
+        $('#facebook-share-url').show();
         // setTimeout( function () {
         //     console.log('data : '+data['imageUrl']);
         //     $('#app-image').attr('src', data['imageUrl']);
