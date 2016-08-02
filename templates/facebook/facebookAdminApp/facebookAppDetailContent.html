@@ -1,14 +1,19 @@
 {% block appDetailContent %}
-        {% if authorized %}
-            <a onclick="location.href='/facebook/runApplication/adminApp/{{ appDetails.AppID }}'">
-                <img class="img-responsive" src="{{ url_for('static', filename='' + appDetails.AppSourceImage) }}"></a>
+    {% if authorized %}
+        <a onclick="location.href='/facebook/runApplication/adminApp/{{ appDetails.AppID }}'">
+            <img class="img-responsive" src="{{ url_for('static', filename='' + appDetails.AppSourceImage) }}"></a>
 
-        {% else %}
-            <div class="img-app">
-                <img id="app-init-image" src="{{ url_for('static', filename='' + appDetails.AppResultImage) }}" class="img-responsive">
-                <a id="fb-logging" href="{{ url_for('/authorize/facebook', redirect=request.url) }}">
-                    <img class="img-login img-responsive" src="{{ url_for('static', filename='images/common/facebook-login-button.png') }}"></a>
-            </div>
-            <script src="{{ url_for('static', filename='javascripts/imgLoad.js') }}"></script>
-        {% endif %}
+    {% else %}
+        <div class="img-app">
+            <img id="app-init-image" style="margin: 0 auto;"
+                 src="{{ url_for('static', filename='' + appDetails.AppResultImage) }}" class="img-responsive">
+            <a id="fb-logging" href="{{ url_for('/authorize/facebook', redirect=request.url) }}">
+                <img class="img-login img-responsive"
+                     src="{{ url_for('static', filename='images/common/facebook-login-button.png') }}"></a>
+            <div hidden class="fb-like" data-href="https://www.facebook.com/JSAppsco/" data-layout="button_count"
+                 data-action="like" data-size="large" data-show-faces="false" data-share="false"></div>
+        </div>
+
+        <script src="{{ url_for('static', filename='javascripts/imgLoad.js') }}"></script>
+    {% endif %}
 {% endblock %}

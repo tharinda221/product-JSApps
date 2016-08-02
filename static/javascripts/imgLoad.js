@@ -3,4 +3,5 @@
  */
 $('#fb-logging').click(function () {
     $('#app-init-image').attr('src', 'http://i.imgur.com/8YsAmq3.gif');
+    $('#fb-logging').hide();
 });

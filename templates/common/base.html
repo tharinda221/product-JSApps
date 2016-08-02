@@ -16,33 +16,44 @@
         <link href="{{ url_for('static', filename='stylesheets/social-buttons.css') }}" rel="stylesheet">
         <link href="{{ url_for('static', filename='stylesheets/custom.css') }}" rel="stylesheet">
 
-        <script type="text/javascript" src="{{ url_for('static', filename='javascripts/jquery-2.2.0.min.js') }}"></script>
+        <script type="text/javascript"
+                src="{{ url_for('static', filename='javascripts/jquery-2.2.0.min.js') }}"></script>
         <script type="text/javascript" src="{{ url_for('static', filename='bootstrap/js/bootstrap.min.js') }}"></script>
         <script type="text/javascript" src="{{ url_for('static', filename='javascripts/custom.js') }}"></script>
-        <script type="text/javascript" src="{{ url_for('static', filename='javascripts/bootstrap-paginator.min.js') }}"></script>
-{#        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js" type="text/javascript"></script>#}
+        <script type="text/javascript"
+                src="{{ url_for('static', filename='javascripts/bootstrap-paginator.min.js') }}"></script>
+        {#        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js" type="text/javascript"></script>#}
 
     {% endblock %}
 </head>
 
 
 <body style="padding: 0px">
-
+<div id="fb-root"></div>
+<script>(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s);
+    js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.7&appId=1686276391610614";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 
 <!-- Facebook page box code -->
 <div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6&appId=1000944106647575";
-  fjs.parentNode.insertBefore(js, fjs);
+<script>(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s);
+    js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6&appId=1000944106647575";
+    fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
 
 
 {% block content %}
     <div style="min-height: 550px">
-        <div  style="height: 70px;background-color: #3b5998; color: #f7f7f7">
+        <div style="height: 70px;background-color: #3b5998; color: #f7f7f7">
             {% block header %}
             {% endblock %}
         </div>
@@ -56,25 +67,25 @@
 
             <div class="row" style="margin-top: 10px;">
                 {% block pageContent %}
-                        <div id="content">
-                            <ul class="thumbnails">
-                                {% block app %}
+                    <div id="content">
+                        <ul class="thumbnails">
+                            {% block app %}
 
-                                {% endblock %}
-                            </ul>
-                            <div class="pagination">
-                                {% block pagination %}
+                            {% endblock %}
+                        </ul>
+                        <div class="pagination">
+                            {% block pagination %}
 
-                                {% endblock %}
-                            </div>
+                            {% endblock %}
                         </div>
+                    </div>
                 {% endblock %}
             </div>
         </div>
 
     </div>
-     {% block footer %}
-        {% endblock %}
+    {% block footer %}
+    {% endblock %}
 {% endblock %}
 
 </body>

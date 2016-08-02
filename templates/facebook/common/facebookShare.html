@@ -7,5 +7,11 @@
                                 caption=JSApps.co&
                                 description={{ appDetails.AppDescription }}">
 
-     <img style="" class="img-responsive" src="{{ url_for('static', filename='images/common/share-on-facebook.gif') }}"></a>
+        <img style="" class="img-responsive"
+             src="{{ url_for('static', filename='images/common/share-on-facebook.gif') }}"></a>
+
+    <a download="profile_created_jsapps_co.jpg" href="{{ imageUrl }}" title="profile_created_jsapps_co">
+    <img style="" class="img-responsive" src="{{ url_for('static', filename='images/common/Download-Button.png') }}">
+</a>
+
 {% endblock %}
