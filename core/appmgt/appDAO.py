@@ -12,17 +12,17 @@ from core.appmgt.apps import facebookUserCreatable
 def putFacebookAppsData():
     databaseCollections.facebookAppsCollectionName.insert(
             {
-                "AppName": "Cartooning your profile pic",
-                "AppMethodName": "cartooning",
-                "AppImage": "images/appImages/facebook/app3/appImage.jpg",
-                "AppSourceImage": "images/appImages/facebook/app3/background.jpg",
-                "AppResultImage": "images/appImages/facebook/app3/appResultImage.png",
+                "AppName": "Pencil Sketch of your profile pic",
+                "AppMethodName": "pencilSketch",
+                "AppImage": "images/appImages/facebook/app4/appImage.jpg",
+                "AppSourceImage": "images/appImages/facebook/app4/background.jpg",
+                "AppResultImage": "images/appImages/facebook/app4/appResultImage.png",
                 "AppUsedCount": 0,
                 "AppCreatedTime": datetime.datetime.utcnow(),
-                "AppDescription": "App is created to convert profile pictures into cartoon image. Enjoy the App",
+                "AppDescription": "This app is to convert your profile picture to pencil sketch. Enjoy the App",
                 "AppType": "admin",
                 "AppLabel": "face",
-                "AppMessage": "Get your cartoonized profile pic"
+                "AppMessage": "Get the pencil sketch of your profile pic"
             }
     )
     logging.info("Inserted FacebookApp data")

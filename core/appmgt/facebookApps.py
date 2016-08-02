@@ -11,6 +11,7 @@ from core.usermgt.user import *
 from core.common.Constants import *
 import config
 from core.imageProcessing.libs.cartoonify import *
+from core.imageProcessing.libs.pencil import *
 
 delay = 1
 
@@ -102,32 +103,6 @@ class facebookAppsMethods(object):
         return common.baseUrl + "/static/images/appImages/facebook/app1/" + "result" + "/" + fileName + ".jpg"
         # return common.baseUrl + "/image/app1", background
 
-    def cartooning(self, appId):
-        # document = databaseCollections.facebookAppsCollectionName.find_one({'_id': ObjectId(appId)})
-        url = getUserProfilePic(session["facebook_user_token"])
-        userImage = readImageFromURLCV2(url, 500, 500)
-        tmp_canvas = Cartoonizer()
-        output = tmp_canvas.render(userImage)
-        # save file
-        fileName = str(session["facebookUser"]["userId"])
-        dirPath = config.pathToAppsImage + "app3" + "/result"
-        filePath = config.pathToAppsImage + "app3" + "/result" + "/" + fileName + ".jpg"
-        if os.path.isdir(dirPath):
-            if os.path.exists(filePath):
-                os.remove(filePath)
-                # output.save(filePath)
-                cv2.imwrite(filePath, output)
-            else:
-                # output.save(filePath)
-                cv2.imwrite(filePath, output)
-        else:
-            os.makedirs(dirPath)
-            # output.save(filePath)
-            cv2.imwrite(filePath, output)
-        time.sleep(delay)
-        return common.baseUrl + "/static/images/appImages/facebook/app3/" + "result" + "/" + fileName + ".jpg"
-        # return common.baseUrl + "/image/app3", "opencv"
-
     def vehicleFind(self, appId):
         document = databaseCollections.facebookAppsCollectionName.find_one({'_id': ObjectId(appId)})
         profileUrl = getUserProfilePic(session["facebook_user_token"])
@@ -156,3 +131,54 @@ class facebookAppsMethods(object):
         time.sleep(delay)
         return common.baseUrl + "/static/images/appImages/facebook/app2/" + "result" + "/" + fileName + ".jpg"
         # return common.baseUrl + "/image/app2", background
+
+    def cartooning(self, appId):
+        # document = databaseCollections.facebookAppsCollectionName.find_one({'_id': ObjectId(appId)})
+        url = getUserProfilePic(session["facebook_user_token"])
+        userImage = readImageFromURLCV2(url, 500, 500)
+        tmp_canvas = Cartoonizer()
+        output = tmp_canvas.render(userImage)
+        # save file
+        fileName = str(session["facebookUser"]["userId"])
+        dirPath = config.pathToAppsImage + "app3" + "/result"
+        filePath = config.pathToAppsImage + "app3" + "/result" + "/" + fileName + ".jpg"
+        if os.path.isdir(dirPath):
+            if os.path.exists(filePath):
+                os.remove(filePath)
+                # output.save(filePath)
+                cv2.imwrite(filePath, output)
+            else:
+                # output.save(filePath)
+                cv2.imwrite(filePath, output)
+        else:
+            os.makedirs(dirPath)
+            # output.save(filePath)
+            cv2.imwrite(filePath, output)
+        time.sleep(delay)
+        return common.baseUrl + "/static/images/appImages/facebook/app3/" + "result" + "/" + fileName + ".jpg"
+        # return common.baseUrl + "/image/app3", "opencv"
+
+    def pencilSketch(self, appId):
+        # document = databaseCollections.facebookAppsCollectionName.find_one({'_id': ObjectId(appId)})
+        url = getUserProfilePic(session["facebook_user_token"])
+        userImage = readImageFromURLCV2(url, 500, 500)
+        pencil = PencilSketch((500, 500))
+        output = pencil.render(userImage)
+        # save file
+        fileName = str(session["facebookUser"]["userId"])
+        dirPath = config.pathToAppsImage + "app4" + "/result"
+        filePath = config.pathToAppsImage + "app4" + "/result" + "/" + fileName + ".jpg"
+        if os.path.isdir(dirPath):
+            if os.path.exists(filePath):
+                os.remove(filePath)
+                # output.save(filePath)
+                cv2.imwrite(filePath, output)
+            else:
+                # output.save(filePath)
+                cv2.imwrite(filePath, output)
+        else:
+            os.makedirs(dirPath)
+            # output.save(filePath)
+            cv2.imwrite(filePath, output)
+        time.sleep(delay)
+        return common.baseUrl + "/static/images/appImages/facebook/app4/" + "result" + "/" + fileName + ".jpg"
