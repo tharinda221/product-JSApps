@@ -5,9 +5,10 @@
 
         {% else %}
             <div class="img-app">
-                <img src="{{ url_for('static', filename='' + appDetails.AppResultImage) }}" class="img-responsive">
-                <a href="{{ url_for('/authorize/facebook', redirect=request.url) }}">
+                <img id="app-init-image" src="{{ url_for('static', filename='' + appDetails.AppResultImage) }}" class="img-responsive">
+                <a id="fb-logging" href="{{ url_for('/authorize/facebook', redirect=request.url) }}">
                     <img class="img-login img-responsive" src="{{ url_for('static', filename='images/common/facebook-login-button.png') }}"></a>
             </div>
+            <script src="{{ url_for('static', filename='javascripts/imgLoad.js') }}"></script>
         {% endif %}
 {% endblock %}

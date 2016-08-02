@@ -19,16 +19,17 @@ class runFacebookApplication(Resource):
             # increase App count
             increaseAppCount(appId, (obj.AppUsedCount+1))
             # run method
-            # method_name = obj.AppMethodName
-            # method = getattr(runApplicaions, method_name)
-            # if not method:
-            #     raise Exception("Method %s not implemented" % method_name)
-            # session["fileName"] = method(appId)
+            method_name = obj.AppMethodName
+            method = getattr(runApplicaions, method_name)
+            if not method:
+                raise Exception("Method %s not implemented" % method_name)
+            session["fileName"] = method(appId)
+
             userId = session["facebookUser"]["userId"]
             userName = session["facebookUser"]["userName"]
             facebookCommentUrl = common.baseUrl + '/facebook/' + appId
             # imageUrl = common.baseUrl + '/image/' + appId
-            imageUrl = "http://i.imgur.com/8YsAmq3.gif"
+            # imageUrl = "http://i.imgur.com/8YsAmq3.gif"
             # get related Apps
             relatedList = getAppIDsByLabel(obj.AppLabel)
             relatedList.sort(key=lambda obj: obj.AppUsedCount, reverse=True)
@@ -39,7 +40,7 @@ class runFacebookApplication(Resource):
                     render_template('facebook/facebookAdminApp/facebookAppFinished.html', authorized=userAuthorized,
                                     id=userId,
                                     name=userName, appDetails=obj,
-                                    facebookCommentUrl=facebookCommentUrl, imageUrl=imageUrl, appID=facebookConstants.appID, baseUrl=common.baseUrl), 200, headers)
+                                    facebookCommentUrl=facebookCommentUrl, imageUrl=session["fileName"], appID=facebookConstants.appID, baseUrl=common.baseUrl), 200, headers)
         else:
             return redirect('/facebook/appDetails/adminApp/' + appId)
 
