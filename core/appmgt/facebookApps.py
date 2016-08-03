@@ -164,6 +164,8 @@ class facebookAppsMethods(object):
         userImage = readImageFromURLCV2(url, 500, 500)
         pencil = PencilSketch((500, 500))
         output = pencil.render(userImage)
+        cv2.rectangle(output, (450, 0), (500, 20), (255, 0, 0), -1)
+        cv2.putText(output, "JSApps.co", (460, 10), cv2.FONT_HERSHEY_SIMPLEX, 1, 2)
         # save file
         fileName = str(session["facebookUser"]["userId"])
         dirPath = config.pathToAppsImage + "app4" + "/result"
