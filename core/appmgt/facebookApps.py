@@ -29,6 +29,7 @@ def fileRemove(dirPath, filePath):
     else:
         os.makedirs(dirPath)
 
+
 class facebookAppsMethods(object):
     def togetherAllProfilePicsByYear(self):
         profileSourceArray = []
@@ -73,14 +74,18 @@ class facebookAppsMethods(object):
         return directory + "/" + fileName + ".gif"
 
     def ProfilePicCreator(self, appId):
-        document = databaseCollections.facebookUserCreatableAppsCollectionName.find_one({'_id': ObjectId(appId)})
+        fileName = str(session["facebookUser"]["userId"])
+        dirPath = config.pathToAppsImage + str(appId) + "/result"
+        filePath = config.pathToAppsImage + str(appId) + "/result" + "/" + fileName + ".jpg"
+        fileRemove(dirPath, filePath)
+        document = databaseCollections.facebookAppsCollectionName.find_one({'_id': ObjectId(appId)})
         url = getUserProfilePic(session["facebook_user_token"])
-        background = readImageFromURL(url)
-        foreground = Image.open(config.pathToStatic + document["AppFilteringImage"])
+        background = readImageFromURL(url, 500, 500)
+        foreground = Image.open(config.pathToStatic + document["AppSourceImage"])
         background.paste(foreground, (0, 0), foreground)
-        fileName = str(random_with_N_digits(24))
-        background.save(config.pathToUserImage + appId + "/" + fileName + ".jpg")
-        return config.pathToUserImage + appId + "/" + fileName + ".jpg"
+        # save
+        background.save(filePath)
+        return common.baseUrl + "/static/images/appImages/facebook/" + str(appId) + "/result" + "/" + fileName + ".jpg"
 
     def CelebrityDatingMatch(self, appId):
         fileName = str(session["facebookUser"]["userId"])
@@ -163,5 +168,3 @@ class facebookAppsMethods(object):
         background.save(filePath)
         # time.sleep(delay)
         return common.baseUrl + "/static/images/appImages/facebook/app4/" + "result" + "/" + fileName + ".jpg"
-
-

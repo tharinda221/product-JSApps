@@ -9,42 +9,47 @@ from core.appmgt.apps import twitterApps
 from core.appmgt.apps import facebookApps
 from core.appmgt.apps import facebookUserCreatable
 
+
 def putFacebookAppsData():
-    databaseCollections.facebookAppsCollectionName.insert(
-            {
-                "AppName": "Pencil Sketch of your profile pic",
-                "AppMethodName": "pencilSketch",
-                "AppImage": "images/appImages/facebook/app4/appImage.jpg",
-                "AppSourceImage": "images/appImages/facebook/app4/background.jpg",
-                "AppResultImage": "images/appImages/facebook/app4/appResultImage.png",
-                "AppUsedCount": 0,
-                "AppCreatedTime": datetime.datetime.utcnow(),
-                "AppDescription": "This app is to convert your profile picture to pencil sketch. Enjoy the App",
-                "AppType": "admin",
-                "AppLabel": "face",
-                "AppMessage": "Get the pencil sketch of your profile pic"
-            }
+    id = databaseCollections.facebookAppsCollectionName.insert({})
+    databaseCollections.facebookAppsCollectionName.save(
+        {
+            "_id": ObjectId(id),
+            "AppName": "Change Your profile picture for cheer for pera",
+            "AppMethodName": "ProfilePicCreator",
+            "AppImage": "images/appImages/facebook/" + str(id) + "/appImage.jpg",
+            "AppSourceImage": "images/appImages/facebook/" + str(id) + "/background.jpg",
+            "AppResultImage": "images/appImages/facebook/" + str(id) + "/appResultImage.png",
+            "AppUsedCount": 0,
+            "AppCreatedTime": datetime.datetime.utcnow(),
+            "AppDescription": "Use this app to support Pera. Change your profile picture to support pera. Enjoy the App",
+            "AppType": "admin",
+            "AppLabel": "face",
+            "AppMessage": "change your profile picture to support pera"
+        }
     )
+    print id
     logging.info("Inserted FacebookApp data")
+
 
 # putFacebookAppsData()
 
 def FacebookUserCreatableAppsData(AppName, AppDescription):
     id = databaseCollections.facebookUserCreatableAppsCollectionName.insert({})
     databaseCollections.facebookUserCreatableAppsCollectionName.save(
-            {
-                "_id": ObjectId(id),
-                "AppName": AppName,
-                "AppMethodName": "ProfilePicCreator",
-                "AppUsedCount": 0,
-                "AppCreatedTime": datetime.datetime.utcnow(),
-                "AppDescription": AppDescription,
-                "AppMessage": "Change your profile picture against CEPA/ETCA",
-                "AppPerentId": "56bf6355380dab5a65b7935b",
-                "AppImage": "images/appImages/facebook/userApps/" + str(id) + "/appImage.jpg",
-                "AppSourceImage": "images/appImages/facebook/userApps/" + str(id) + "/AppSourceImage.jpg",
-                "AppFilteringImage": "images/appImages/facebook/userApps/" + str(id) + "/FilteringImage.png"
-            }
+        {
+            "_id": ObjectId(id),
+            "AppName": AppName,
+            "AppMethodName": "ProfilePicCreator",
+            "AppUsedCount": 0,
+            "AppCreatedTime": datetime.datetime.utcnow(),
+            "AppDescription": AppDescription,
+            "AppMessage": "Change your profile picture against CEPA/ETCA",
+            "AppPerentId": "56bf6355380dab5a65b7935b",
+            "AppImage": "images/appImages/facebook/userApps/" + str(id) + "/appImage.jpg",
+            "AppSourceImage": "images/appImages/facebook/userApps/" + str(id) + "/AppSourceImage.jpg",
+            "AppFilteringImage": "images/appImages/facebook/userApps/" + str(id) + "/FilteringImage.png"
+        }
     )
     logging.info("Inserted FacebookUserCreatableApp data")
     return id
@@ -52,25 +57,28 @@ def FacebookUserCreatableAppsData(AppName, AppDescription):
 
 def putTwitterAppsData():
     databaseCollections.twitterAppsCollectionName.insert(
-            {
-                "AppName": "Your Most Used Words",
-                "AppMethodName": "TestMethod",
-                "AppImage": "images/appImages/twitter/app1/appImage.jpg",
-                "AppSourceImage": "images/appImages/twitter/app1/background.jpg",
-                "AppResultImage": "images/appImages/twitter/app1/appResultImage.jpg",
-                "AppUsedCount": 0,
-                "AppCreatedTime": datetime.datetime.utcnow(),
-                "AppDescription": "This app will read your tweets and out you mostly used words in twitter",
-                "AppMessage": "This app will read your tweets and out you mostly used words in twitter"
-            }
+        {
+            "AppName": "Your Most Used Words",
+            "AppMethodName": "TestMethod",
+            "AppImage": "images/appImages/twitter/app1/appImage.jpg",
+            "AppSourceImage": "images/appImages/twitter/app1/background.jpg",
+            "AppResultImage": "images/appImages/twitter/app1/appResultImage.jpg",
+            "AppUsedCount": 0,
+            "AppCreatedTime": datetime.datetime.utcnow(),
+            "AppDescription": "This app will read your tweets and out you mostly used words in twitter",
+            "AppMessage": "This app will read your tweets and out you mostly used words in twitter"
+        }
     )
     logging.info("Inserted TwitterApps data")
+
 
 def rowCount(dbCollection):
     return dbCollection.count()
 
+
 def NumberOfFacebookApps():
     return rowCount(databaseCollections.facebookAppsCollectionName)
+
 
 def NumberOfFacebookUserCreatableApps():
     return rowCount(databaseCollections.facebookUserCreatableAppsCollectionName)
@@ -118,7 +126,6 @@ def getFacebookUserCreatableAppDetailsById(Id):
     return obj
 
 
-
 def NumberOfTwitterApps():
     return rowCount(databaseCollections.twitterAppsCollectionName)
 
@@ -157,7 +164,7 @@ def getFacebookUserCreatableAppsIDList(parentAppId):
     return list
 
 
-def increaseAppCount(Id , count):
+def increaseAppCount(Id, count):
     try:
         databaseCollections.facebookAppsCollectionName.update_one(
             {
@@ -169,6 +176,7 @@ def increaseAppCount(Id , count):
         return True
     except IOError:
         return False
+
 
 def getAppIDsByLabel(label):
     list = []
