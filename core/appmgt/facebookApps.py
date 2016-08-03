@@ -22,6 +22,13 @@ def random_with_N_digits(n):
     return randint(range_start, range_end)
 
 
+def fileRemove(dirPath, filePath):
+    if os.path.isdir(dirPath):
+        if os.path.exists(filePath):
+            os.remove(filePath)
+    else:
+        os.makedirs(dirPath)
+
 class facebookAppsMethods(object):
     def togetherAllProfilePicsByYear(self):
         profileSourceArray = []
@@ -79,8 +86,7 @@ class facebookAppsMethods(object):
         fileName = str(session["facebookUser"]["userId"])
         dirPath = config.pathToAppsImage + "app1" + "/result"
         filePath = config.pathToAppsImage + "app1" + "/result" + "/" + fileName + ".jpg"
-        facebookApps = facebookAppsMethods()
-        facebookApps.fileRemove(dirPath, filePath)
+        fileRemove(dirPath, filePath)
         document = databaseCollections.facebookAppsCollectionName.find_one({'_id': ObjectId(appId)})
         url = getUserProfilePic(session["facebook_user_token"])
         skill = randint(0, 6)
@@ -101,8 +107,7 @@ class facebookAppsMethods(object):
         fileName = str(session["facebookUser"]["userId"])
         dirPath = config.pathToAppsImage + "app2" + "/result"
         filePath = config.pathToAppsImage + "app2" + "/result" + "/" + fileName + ".jpg"
-        facebookApps = facebookAppsMethods()
-        facebookApps.fileRemove(dirPath, filePath)
+        fileRemove(dirPath, filePath)
         document = databaseCollections.facebookAppsCollectionName.find_one({'_id': ObjectId(appId)})
         profileUrl = getUserProfilePic(session["facebook_user_token"])
         number = randint(0, 5)
@@ -126,14 +131,15 @@ class facebookAppsMethods(object):
         fileName = str(session["facebookUser"]["userId"])
         dirPath = config.pathToAppsImage + "app3" + "/result"
         filePath = config.pathToAppsImage + "app3" + "/result" + "/" + fileName + ".jpg"
-        facebookApps = facebookAppsMethods()
-        facebookApps.fileRemove(dirPath, filePath)
+        fileRemove(dirPath, filePath)
         url = getUserProfilePic(session["facebook_user_token"])
         userImage = readImageFromURLCV2(url, 500, 500)
         tmp_canvas = Cartoonizer()
         output = tmp_canvas.render(userImage)
         cv2_im = cv2.cvtColor(output, cv2.COLOR_BGR2RGB)
         background = Image.fromarray(cv2_im)
+        foreground = Image.open(config.pathToCommon + "jsapps.png")
+        background.paste(foreground, (0, 0), foreground)
         # time.sleep(delay)
         background.save(filePath)
         return common.baseUrl + "/static/images/appImages/facebook/app3/" + "result" + "/" + fileName + ".jpg"
@@ -144,24 +150,18 @@ class facebookAppsMethods(object):
         fileName = str(session["facebookUser"]["userId"])
         dirPath = config.pathToAppsImage + "app4" + "/result"
         filePath = config.pathToAppsImage + "app4" + "/result" + "/" + fileName + ".jpg"
-        facebookApps = facebookAppsMethods()
-        facebookApps.fileRemove(dirPath,filePath)
+        fileRemove(dirPath, filePath)
         url = getUserProfilePic(session["facebook_user_token"])
         userImage = readImageFromURLCV2(url, 500, 500)
         pencil = PencilSketch((500, 500))
         output = pencil.render(userImage)
-        cv2.rectangle(output, (450, 0), (500, 20), (255, 0, 0), -1)
-        cv2.putText(output, "JSApps.co", (460, 10), cv2.FONT_HERSHEY_SIMPLEX, 1, 2)
         cv2_im = cv2.cvtColor(output, cv2.COLOR_BGR2RGB)
         background = Image.fromarray(cv2_im)
+        foreground = Image.open(config.pathToCommon + "jsapps.png")
+        background.paste(foreground, (0, 0), foreground)
         # save file
         background.save(filePath)
         # time.sleep(delay)
         return common.baseUrl + "/static/images/appImages/facebook/app4/" + "result" + "/" + fileName + ".jpg"
 
-    def fileRemove(self, dirPath, filePath):
-        if os.path.isdir(dirPath):
-            if os.path.exists(filePath):
-                os.remove(filePath)
-        else:
-            os.makedirs(dirPath)
+
