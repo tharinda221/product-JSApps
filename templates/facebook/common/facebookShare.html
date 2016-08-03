@@ -1,21 +1,16 @@
 {% block facebookShare %}
     <div class="row">
         <div class="col-sm-6">
-{#            <a id="facebook-share-url" target="_blank" href="https://www.facebook.com/dialog/share?#}
-{#                                app_id=1686276391610614&#}
-{#                                href=http://jsapps.co/facebook/appDetails/adminApp/{{ appDetails.AppID }}&#}
-{#                                picture={{ imageUrl }}&#}
-{#                                name={{ appDetails.AppName }}&#}
-{#                                caption=JSApps.co&#}
-{#                                description={{ appDetails.AppDescription }}">#}
-            <!-- Your share button code -->
-            <div class="fb-share-button"
-                data-href="http://jsapps.co/facebook/runApplication/adminApp/{{ appDetails.AppID }}"
-                data-layout="button_count">
-            </div>
+            <a id="facebook-share-url" target="_blank" href="https://www.facebook.com/dialog/share?
+                                app_id=1686276391610614&
+                                href=http://jsapps.co/facebook/appDetails/adminApp/{{ appDetails.AppID }}&
+                                picture={{ imageUrl }}&
+                                name={{ appDetails.AppName }}&
+                                caption=JSApps.co&
+                                description={{ appDetails.AppDescription }}">
 
-{#            <img style="" class="img-responsive"#}
-{#                 src="{{ url_for('static', filename='images/common/share-on-facebook.gif') }}"></a>#}
+            <img style="" class="img-responsive"
+                 src="{{ url_for('static', filename='images/common/share-on-facebook.gif') }}"></a>
         </div>
         <div class="col-sm-12">
             <a download="profile_created_jsapps_co.jpg" href="{{ imageUrl }}" title="profile_created_jsapps_co">

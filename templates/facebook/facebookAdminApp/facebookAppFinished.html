@@ -1,13 +1,5 @@
 {% extends "common/index.html" %}
 {% block title %}JSApps.co: {{ appDetails.AppName }}{% endblock %}
-{% block head %}
-    <meta property="og:url"           content="http://jsapps.co/facebook/appDetails/adminApp/{{ appDetails.AppID }}" />
-	<meta property="og:type"          content="website" />
-	<meta property="og:title"         content="{{ appDetails.AppName }}" />
-	<meta property="og:description"   content="{{ appDetails.AppDescription }}" />
-	<meta property="og:image"         content="{{ imageUrl }}" />
-
-{% endblock %}
 
 {% block header %}
     {% include "facebook/common/facebookHeader.html" %}
