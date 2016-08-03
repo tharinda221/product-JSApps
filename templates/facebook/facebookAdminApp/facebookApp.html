@@ -8,22 +8,26 @@
                             alt="thumbnail">
                     </a>
                     <div class="caption">
-{#                        <h4>{{ app.AppName }}</h4>#}
-{#                        <p>{{ app.AppDescription }}</p>#}
+                        {#                        <h4>{{ app.AppName }}</h4>#}
+                        {#                        <p>{{ app.AppDescription }}</p>#}
 
                         <hr>
-                        <button class="btn btn-default"><a onclick="location.href= '/facebook/UserCreatableAppsDetails/{{ app.AppID }}/1'" class="btn">Next→</a></button>
+                        <button class="btn btn-default"><a
+                                onclick="location.href= '/facebook/UserCreatableAppsDetails/{{ app.AppID }}/1'"
+                                class="btn">Next→</a></button>
                     </div>
                 {% else %}
-                    <a onclick="location.href= '/facebook/appDetails/{{ app.AppID }}'">
+                    <a onclick="location.href= '/facebook/appDetails/adminApp/{{ app.AppID }}'">
                         <img src="{{ url_for('static', filename='' + app.AppImage) }}" alt="thumbnail">
                     </a>
                     <div class="caption">
-{#                        <h4>{{ app.AppName }}</h4>#}
-{#                        <p>{{ app.AppDescription }}</p>#}
+                        {#                        <h4>{{ app.AppName }}</h4>#}
+                        {#                        <p>{{ app.AppDescription }}</p>#}
 
                         <hr>
-                        <button class="btn btn-info text-center" style="margin: 0 auto"><a onclick="location.href='/facebook/appDetails/adminApp/{{ app.AppID }}'">Next</a></button>
+                        <button class="btn btn-info text-center" style="margin: 0 auto"
+                                onClick="location.href='/facebook/appDetails/adminApp/{{ app.AppID }}'">Next
+                        </button>
                     </div>
                 {% endif %}
             </div>
