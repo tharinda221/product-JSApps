@@ -13,7 +13,7 @@ import config
 from core.imageProcessing.libs.cartoonify import *
 from core.imageProcessing.libs.pencil import *
 
-delay = 1
+delay = 0
 
 
 def random_with_N_digits(n):
@@ -138,6 +138,8 @@ class facebookAppsMethods(object):
         userImage = readImageFromURLCV2(url, 500, 500)
         tmp_canvas = Cartoonizer()
         output = tmp_canvas.render(userImage)
+        cv2_im = cv2.cvtColor(output, cv2.COLOR_BGR2RGB)
+        background = Image.fromarray(cv2_im)
         # save file
         fileName = str(session["facebookUser"]["userId"])
         dirPath = config.pathToAppsImage + "app3" + "/result"
@@ -146,14 +148,14 @@ class facebookAppsMethods(object):
             if os.path.exists(filePath):
                 os.remove(filePath)
                 # output.save(filePath)
-                cv2.imwrite(filePath, output)
+                background.save(filePath)
             else:
                 # output.save(filePath)
-                cv2.imwrite(filePath, output)
+                background.save(filePath)
         else:
             os.makedirs(dirPath)
             # output.save(filePath)
-            cv2.imwrite(filePath, output)
+            background.save(filePath)
         time.sleep(delay)
         return common.baseUrl + "/static/images/appImages/facebook/app3/" + "result" + "/" + fileName + ".jpg"
         # return common.baseUrl + "/image/app3", "opencv"
@@ -166,6 +168,8 @@ class facebookAppsMethods(object):
         output = pencil.render(userImage)
         cv2.rectangle(output, (450, 0), (500, 20), (255, 0, 0), -1)
         cv2.putText(output, "JSApps.co", (460, 10), cv2.FONT_HERSHEY_SIMPLEX, 1, 2)
+        cv2_im = cv2.cvtColor(output, cv2.COLOR_BGR2RGB)
+        background = Image.fromarray(cv2_im)
         # save file
         fileName = str(session["facebookUser"]["userId"])
         dirPath = config.pathToAppsImage + "app4" + "/result"
@@ -174,13 +178,13 @@ class facebookAppsMethods(object):
             if os.path.exists(filePath):
                 os.remove(filePath)
                 # output.save(filePath)
-                cv2.imwrite(filePath, output)
+                background.save(filePath)
             else:
                 # output.save(filePath)
-                cv2.imwrite(filePath, output)
+                background.save(filePath)
         else:
             os.makedirs(dirPath)
             # output.save(filePath)
-            cv2.imwrite(filePath, output)
+            background.save(filePath)
         time.sleep(delay)
         return common.baseUrl + "/static/images/appImages/facebook/app4/" + "result" + "/" + fileName + ".jpg"
