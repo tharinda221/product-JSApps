@@ -1,5 +1,10 @@
 {% extends "common/comment.html" %}
 {% block facebookUrl %}
+
+    <hr>
+    <b>Like our page JSapps on FB  >></b><div hidden class="fb-like img-login img-responsive" data-href="https://www.facebook.com/JSAppsco/" data-layout="button_count"
+                 data-action="like" data-size="large" data-show-faces="false" data-share="false"></div>
+    <hr>
     <div class="fb-comments" data-href={{ facebookCommentUrl }} data-width="600"
          data-numposts="10"></div>
 {% endblock %}
