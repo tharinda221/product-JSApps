@@ -105,7 +105,8 @@ def getFacebookAppDetailsById(Id):
                        appusedcount=document["AppUsedCount"],
                        appdescription=document["AppDescription"],
                        apptype=document["AppType"],
-                       applabel=document["AppLabel"])
+                       applabel=document["AppLabel"],
+                       appmessage=document["AppMessage"])
 
     return obj
 

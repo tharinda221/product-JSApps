@@ -35,7 +35,6 @@ class runFacebookApplication(Resource):
             relatedList.sort(key=lambda obj: obj.AppUsedCount, reverse=True)
             relatedList = relatedList[:8]
             headers = {'Content-Type': 'text/html'}
-
             return make_response(
                     render_template('facebook/facebookAdminApp/facebookAppFinished.html', authorized=userAuthorized,
                                     id=userId,

@@ -60,13 +60,16 @@
         </div>
         <div class="col-sm-12">
 
-            <div id="instructions" class="col-sm-12">
+            {% if appDetails.AppType == 'user'  %}
+                <div id="instructions" class="col-sm-12">
                 <h5><b>Follw these instructions to change your profile picture</b></h5>
                 <ul>
                     <li>Click following download image button and download your profile picture</li>
-                    <li>Visit to your profile and upload your profile picture for cheer :)</li>
+                    <li>{{ appDetails.AppMessage }}</li>
                 </ul>
             </div>
+
+            {% endif %}
 
             <a download="profile_created_jsapps_co.jpg" href="{{ imageUrl }}" title="profile_created_jsapps_co">
                 <img style="" class="img-responsive"
