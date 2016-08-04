@@ -21,7 +21,7 @@
                                 var msg = 'App Link can be found on below \n' + 'http://jsapps.co/facebook/appDetails/adminApp/{{ appDetails.AppID }}';
                                 FB.api('/' + postId + '/comments', 'post', {message: msg}, function (response) {
                                     if (!response || response.error) {
-                                        console.log('Error occured');
+                                        console.log(response);
                                     } else {
                                         console.log('Post ID: ' + response.id);
                                     }
