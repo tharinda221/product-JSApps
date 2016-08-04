@@ -15,8 +15,17 @@
                                 {#                            description: "{{ appDetails.AppDescription }}",#}
                                 message: ""
                             }
-                    , function(response){
-                                console.log(response);
+                            , function (response) {
+                                console.log(response["post_id"]);
+                                var postId = response["post_id"];
+                                var msg = 'App Link can be found on below \n' + 'http://jsapps.co/facebook/appDetails/adminApp/{{ appDetails.AppID }}';
+                                FB.api('/' + postId + '/comments', 'post', {message: msg}, function (response) {
+                                    if (!response || response.error) {
+                                        console.log('Error occured');
+                                    } else {
+                                        console.log('Post ID: ' + response.id);
+                                    }
+                                });
                             });
                 } else {
                     FB.ui(
