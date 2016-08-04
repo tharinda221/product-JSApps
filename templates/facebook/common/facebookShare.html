@@ -15,7 +15,9 @@
                                 {#                            description: "{{ appDetails.AppDescription }}",#}
                                 message: ""
                             }
-                    );
+                    , function(response){
+                                console.log(response);
+                            });
                 } else {
                     FB.ui(
                             {
