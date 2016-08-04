@@ -59,6 +59,15 @@
             <a><img src="{{ url_for('static', filename='images/common/share-on-facebook.gif') }}" id="share_button"></a>
         </div>
         <div class="col-sm-12">
+
+            <div id="instructions" class="col-sm-12">
+                <h5><b>Follw these instructions to change your profile picture</b></h5>
+                <ul>
+                    <li>Click following download image button and download your profile picture</li>
+                    <li>Visit to your profile and upload your profile picture for cheer :)</li>
+                </ul>
+            </div>
+
             <a download="profile_created_jsapps_co.jpg" href="{{ imageUrl }}" title="profile_created_jsapps_co">
                 <img style="" class="img-responsive"
                      src="{{ url_for('static', filename='images/common/downbtn.png') }}">
