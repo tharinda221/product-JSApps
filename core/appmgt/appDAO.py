@@ -15,17 +15,17 @@ def putFacebookAppsData():
     databaseCollections.facebookAppsCollectionName.save(
         {
             "_id": ObjectId(id),
-            "AppName": "Change Your profile picture to support Sri Lanka in RIO olympics 2016",
+            "AppName": "PAHASARANI live in concert 2016. 12th oct 7pm @ UOP GYM",
             "AppMethodName": "ProfilePicCreator",
             "AppImage": "images/appImages/facebook/" + str(id) + "/appImage.jpg",
             "AppSourceImage": "images/appImages/facebook/" + str(id) + "/background.jpg",
             "AppResultImage": "images/appImages/facebook/" + str(id) + "/appResultImage.png",
             "AppUsedCount": 0,
             "AppCreatedTime": datetime.datetime.utcnow(),
-            "AppDescription": "Use this app to support Sri Lanka in RIO olympics 2016. Enjoy the App",
+            "AppDescription": "PAHASARANI live in concert 2016. 12th oct 7pm @ UOP GYM.",
             "AppType": "admin",
             "AppLabel": "face",
-            "AppMessage": "Change Your profile picture to support Sri Lanka in RIO olympics 2016"
+            "AppMessage": "Change Your profile picture for PAHASARANI live in concert 2016."
         }
     )
     print id
